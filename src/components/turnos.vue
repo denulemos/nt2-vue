@@ -40,8 +40,8 @@
       </v-list-item>
   
       <v-card-actions >
-         <b-button @click="modalShow = true" v-if="medico.hayTurno">Reservar Turno</b-button>
-         <b-button small  v-else>No hay turnos</b-button>
+         <b-button depressed small @click="modalShow = true" v-if="medico.hayTurno">Reservar Turno</b-button>
+         <b-button depressed small disabled v-else>No hay turnos</b-button>
          
         
        
