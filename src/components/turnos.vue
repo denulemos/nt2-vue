@@ -1,4 +1,6 @@
 <template>
+
+
   <div id="app">
      <input
       type="text"
@@ -6,7 +8,7 @@
       v-model="criterioDeBusqueda"
       placeholder="Ingresar un criterio de busqueda..."
     />
-    
+     
     <br />
     <h2 v-text="`${medicosFiltradas.length} Medicos disponibles`"></h2>
     <h5 v-text="`${legajosDistintos.length} legajos distintos`"></h5>
@@ -14,7 +16,7 @@
     
     <div class="card-deck">
       <div class="row">
-        <div class="col" v-for="medico in medicosFiltradas" v-bind:key="medico">
+        <div class="col" v-for="medico in medicosFiltradas" v-bind:key="medico.legajo">
  <v-card
       class="mx-auto"
       max-width="344"
@@ -38,33 +40,33 @@
       </v-list-item>
   
       <v-card-actions >
-         <v-btn small  v-if="medico.hayTurno">Reservar Turno</v-btn>
-         <v-btn small  v-else>No hay turnos</v-btn>
+         <b-button @click="modalShow = true" v-if="medico.hayTurno">Reservar Turno</b-button>
+         <b-button small  v-else>No hay turnos</b-button>
+         
         
        
       </v-card-actions>
-    </v-card>
 
+      
+    </v-card>
+ 
          
 
         </div>
+        <b-modal class="modalTurnos" v-model="modalShow">Hello From Modal!</b-modal>
       </div>
     </div>
   </div>
 </template>
 <script>
+
 export default {
    
   data: function() {
     return {
       hayTurno: false, //Mostrar o no boton de reserva turnos
       criterioDeBusqueda: "",
-      items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' },
-    ],
+     modalShow: false,
       medicos: [
         {
           nombre: "Medico",
@@ -77,7 +79,7 @@ export default {
         {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 123456782,
           especialidad: "Obstetra",
           foto: "../assets/medico.jpg",
           hayTurno: true
@@ -85,7 +87,7 @@ export default {
          {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 123456781,
           especialidad: "Obstetra",
           foto: "../assets/medico.jpg",
           hayTurno: true
@@ -93,7 +95,7 @@ export default {
          {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 123456786,
           especialidad: "Obstetra",
           foto: "../assets/medico.jpg",
           hayTurno: true
@@ -101,7 +103,7 @@ export default {
          {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 1234567899,
           especialidad: "Obstetra",
           foto: "../assets/medico.jpg",
           hayTurno: true
@@ -109,7 +111,7 @@ export default {
         {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 1234567895,
           especialidad: "Obstetra",
           foto: '../assets/medico.jpg',
           hayTurno: false
@@ -117,7 +119,7 @@ export default {
         {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 1234567849,
           especialidad: "Obstetra",
           foto: '../assets/medico.jpg',
           hayTurno: true
@@ -125,7 +127,7 @@ export default {
         {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 1234562789,
           especialidad: "Obstetra",
           foto: '../assets/medico.jpg',
           hayTurno: false
@@ -133,7 +135,7 @@ export default {
         {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 1213456789,
           especialidad: "Obstetra",
           foto: '../assets/medico.jpg',
           hayTurno: true
@@ -141,7 +143,7 @@ export default {
         {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 12443456789,
           especialidad: "Obstetra",
           foto: '../assets/medico.jpg',
           hayTurno: false
@@ -165,12 +167,25 @@ export default {
   methods: {
     getNombreCompleto(medico) {
       return `${medico.nombre} ${medico.apellido}`;
-    }
+    },
+    showModal() {
+      this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
+    },
+    hideModal() {
+      this.$root.$emit('bv::hide::modal', 'modal-1', '#btnShow')
+    },
+    toggleModal() {
+      this.$root.$emit('bv::toggle::modal', 'modal-1', '#btnToggle')
+    
+  }
   }
 };
 </script>
-<style scoped>
+<style >
 .v-avatar{
   background: pink;
+}
+.modal-backdrop{
+  opacity: 0.1!important;
 }
 </style>
