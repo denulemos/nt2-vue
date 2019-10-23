@@ -1,39 +1,76 @@
 <template>
-  <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+  <div
+    id="app"
+    class="container"
+  >
+    
+      <v-toolbar
+        :extended="extended"
+        :prominent="prominent"
+        :dense="dense"
+        :collapse="collapse"
+        :flat="flat"
+        :src="bg ? 'https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg' : undefined"
+        :extension-height="extensionHeight"
       >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
+      
+  
+        <v-toolbar-title>Placeholder</v-toolbar-title>
+  
+        <v-spacer></v-spacer>
+  
+        <v-toolbar-items>
+          <v-btn text><router-link to="/" tag="li" exact class="nav-link">Home</router-link></v-btn>
+          <v-btn text><router-link to="/turnos" tag="li" class="nav-link">Turnos</router-link></v-btn>
+          <v-btn text> <router-link to="/medicos" tag="li" class="nav-link">Medicos</router-link></v-btn>
+           <v-btn text><router-link to="/pacientes" tag="li" class="nav-link">Pacientes</router-link></v-btn>
+        </v-toolbar-items>
+  
+       
+      </v-toolbar>
+    <hr>
+    <router-view></router-view>
 
-    <v-content>
-      <HelloWorld/>
-    </v-content>
-  </v-app>
+
+    
+  </div>
+
+
+
 </template>
 
 
-<script>
-import HelloWorld from './components/HelloWorld';
+  
 
+
+<script>
+
+ 
 export default {
   name: 'App',
+  
   components: {
-    HelloWorld,
+  
   },
   data: () => ({
-    //
+     extended: false,
+    extendedSlot: false,
+    prominent: false,
+    dense: false,
+    collapse: false,
+    flat: false,
+    bg: false,
+    extensionHeight: 48,
   }),
 };
 </script>
 
 
+
+<style scoped>
+@media (min-width: 1200px){
+  .container{
+    max-width: 1324px;
+  }
+} 
+</style>
