@@ -10,7 +10,7 @@
         aspect-ratio="1"
         class="grey lighten-2"
         
-        max-height="300"
+        max-height="620"
       ></v-img>
     </v-row>
   </v-app>
@@ -24,5 +24,11 @@
 }
 .theme--light.v-application{
    background: none;
+}
+.lighten-2 {
+max-height: 621px;
+}
+.v-image__image .v-image__image--cover{
+height: 622px;
 }
 </style>

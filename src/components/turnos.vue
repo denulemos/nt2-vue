@@ -8,7 +8,7 @@
     />
     
     <br />
-    <h2 v-text="`${medicosFiltradas.length} resultados`"></h2>
+    <h2 v-text="`${medicosFiltradas.length} Medicos disponibles`"></h2>
     <h5 v-text="`${legajosDistintos.length} legajos distintos`"></h5>
 
     
@@ -37,8 +37,8 @@
 
       </v-list-item>
   
-      <v-card-actions>
-         <v-btn small v-if="medico.hayTurno">Reservar Turno</v-btn>
+      <v-card-actions >
+         <v-btn small  v-if="medico.hayTurno">Reservar Turno</v-btn>
          <v-btn small  v-else>No hay turnos</v-btn>
         
        
