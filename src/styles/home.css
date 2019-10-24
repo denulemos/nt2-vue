@@ -11,3 +11,7 @@
  .v-image__image .v-image__image--cover{
  height: 622px;
  }
+ .v-application--wrap{
+     min-height: 70vh;
+     max-width: none;
+ }
