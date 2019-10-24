@@ -1,6 +1,4 @@
 <template>
-
-
   <div id="app">
      <input
       type="text"
@@ -40,7 +38,7 @@
       </v-list-item>
   
       <v-card-actions >
-         <b-button depressed small @click="modalShow = true" v-if="medico.hayTurno">Reservar Turno</b-button>
+         <b-button depressed small @click="modalShow = true; nombreModal = getNombreCompleto(medico)"  v-if="medico.hayTurno">Reservar Turno</b-button>
          <b-button depressed small disabled v-else>No hay turnos</b-button>
          
         
@@ -53,7 +51,10 @@
          
 
         </div>
-        <b-modal class="modalTurnos" v-model="modalShow">Hello From Modal!</b-modal>
+        <b-modal class="modalTurnos" v-model="modalShow">
+          
+          <h1>Reservar Turno con {{nombreModal}}</h1>
+          </b-modal>
       </div>
     </div>
   </div>
@@ -66,76 +67,78 @@ export default {
     return {
       hayTurno: false, //Mostrar o no boton de reserva turnos
       criterioDeBusqueda: "",
+      nombreModal : "",
+
      modalShow: false,
       medicos: [
         {
-          nombre: "Medico",
+          nombre: "Juan Perez",
           apellido: "Test 1",
-          legajo: 123456789,
+          legajo: 12345,
           especialidad: "Obstetra",
           foto: "../assets/medico.jpg",
           hayTurno: false
         },
         {
-          nombre: "Medico",
+          nombre: "Pepe Perez",
           apellido: "Test 1",
-          legajo: 123456782,
-          especialidad: "Obstetra",
+          legajo: 12346,
+          especialidad: "Clinico",
+          foto: "../assets/medico.jpg",
+          hayTurno: true
+        },
+         {
+          nombre: "Deno Lemon",
+          apellido: "Test 1",
+          legajo: 12342,
+          especialidad: "Dentista",
+          foto: "../assets/medico.jpg",
+          hayTurno: true
+        },
+         {
+          nombre: "Elvis Cochuelo",
+          apellido: "Test 1",
+          legajo: 12341,
+          especialidad: "Oftalmologo",
           foto: "../assets/medico.jpg",
           hayTurno: true
         },
          {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 123456781,
-          especialidad: "Obstetra",
-          foto: "../assets/medico.jpg",
-          hayTurno: true
-        },
-         {
-          nombre: "Medico",
-          apellido: "Test 1",
-          legajo: 123456786,
-          especialidad: "Obstetra",
-          foto: "../assets/medico.jpg",
-          hayTurno: true
-        },
-         {
-          nombre: "Medico",
-          apellido: "Test 1",
-          legajo: 1234567899,
-          especialidad: "Obstetra",
+          legajo: 12344,
+          especialidad: "Otorrinonaringologo",
           foto: "../assets/medico.jpg",
           hayTurno: true
         },
         {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 1234567895,
-          especialidad: "Obstetra",
+          legajo: 12340,
+          especialidad: "Cardiologo",
           foto: '../assets/medico.jpg',
           hayTurno: false
         },
         {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 1234567849,
-          especialidad: "Obstetra",
+          legajo: 12300,
+          especialidad: "Ginecologo",
           foto: '../assets/medico.jpg',
           hayTurno: true
         },
         {
           nombre: "Medico",
-          apellido: "Test 1",
-          legajo: 1234562789,
+          apellido: "Neurologo",
+          legajo: 12311,
           especialidad: "Obstetra",
           foto: '../assets/medico.jpg',
           hayTurno: false
         },
         {
           nombre: "Medico",
-          apellido: "Test 1",
-          legajo: 1213456789,
+          apellido: "Pediatra",
+          legajo: 12333,
           especialidad: "Obstetra",
           foto: '../assets/medico.jpg',
           hayTurno: true
@@ -143,8 +146,8 @@ export default {
         {
           nombre: "Medico",
           apellido: "Test 1",
-          legajo: 12443456789,
-          especialidad: "Obstetra",
+          legajo: 12222,
+          especialidad: "Psiquiatra",
           foto: '../assets/medico.jpg',
           hayTurno: false
         }
@@ -181,11 +184,7 @@ export default {
   }
 };
 </script>
+
 <style >
-.v-avatar{
-  background: pink;
-}
-.modal-backdrop{
-  opacity: 0.1!important;
-}
+@import '../styles/turnos.css';
 </style>
