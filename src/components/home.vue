@@ -18,17 +18,5 @@
 </template>
 
 <style scoped>
-.v-application .align-center{
-   -webkit-box-align:unset!important;
-   align-items:unset!important;
-}
-.theme--light.v-application{
-   background: none;
-}
-.lighten-2 {
-max-height: 621px;
-}
-.v-image__image .v-image__image--cover{
-height: 622px;
-}
+@import '../styles/home.css';
 </style>

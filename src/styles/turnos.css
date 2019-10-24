@@ -1,0 +1,10 @@
+.v-avatar{
+    background: pink;
+  }
+  .modal-backdrop{
+    opacity: 0.5;
+  
+  }
+  .modal-dialog{
+        max-width: 838px;
+  }
