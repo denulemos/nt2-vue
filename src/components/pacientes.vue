@@ -92,12 +92,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .v-application .pa-12{
     margin-top: 163px;
 }
 .v-label{
 font-size: 25px;
+}
+#inspire{
+  background-image: url('..\assets\fondo1.jpg');
+  background-size: contain;
 }
 
 </style>
