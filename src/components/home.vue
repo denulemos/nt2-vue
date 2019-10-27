@@ -1,10 +1,10 @@
 <template>
-   
-
+  
 <div id="app">
   <v-app id="inspire">
+    
     <v-row align="center" justify="center">
-      
+     
       <v-img
         src="../assets/doctor.jpg"
         lazy-src="https://picsum.photos/id/11/10/6"
@@ -13,6 +13,8 @@
         
         max-height="620"
       ></v-img>
+      <h1 class="cartel">Placeholder</h1>
+       
     </v-row>
   </v-app>
 </div>
