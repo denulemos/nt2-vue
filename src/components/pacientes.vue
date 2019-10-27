@@ -25,69 +25,8 @@
               :counter="counterEn ? counter : false"
               :dense="dense"
             ></v-text-field>
-                     <v-row justify="center">
-    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-      <template v-slot:activator="{ on }">
-        <v-btn depressed large color="primary" dark v-on="on">Ver Turnos</v-btn>
-      </template>
-      <v-card>
-        <v-toolbar dark color="primary">
-          <v-btn icon dark @click="dialog = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Próximos Turnos</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn dark text @click="dialog = false">Save</v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-list three-line subheader>
-           <v-row>
-    <v-col>
-      <v-sheet height="400">
-        <v-calendar
-          ref="calendar"
-          :now="today"
-          :value="today"
-          :events="events"
-          color="primary"
-          type="week"
-        >
-          <!-- the events at the top (all-day) -->
-          <template v-slot:day-header="{ date }">
-            <template v-for="event in eventsMap[date]">
-              <!-- all day events don't have time -->
-              <div
-                v-if="!event.time"
-                :key="event.title"
-                class="my-event"
-                @click="open(event)"
-                v-html="event.title"
-              ></div>
-            </template>
-          </template>
-          <!-- the events at the bottom (timed) -->
-          <template v-slot:day-body="{ date, timeToY, minutesToPixels }">
-            <template v-for="event in eventsMap[date]">
-              <!-- timed events -->
-              <div
-                v-if="event.time"
-                :key="event.title"
-                :style="{ top: timeToY(event.time) + 'px', height: minutesToPixels(event.duration) + 'px' }"
-                class="my-event with-time"
-                @click="open(event)"
-                v-html="event.title"
-              ></div>
-            </template>
-          </template>
-        </v-calendar>
-      </v-sheet>
-    </v-col>
-  </v-row>
-        </v-list>
-      </v-card>
-    </v-dialog>
-  </v-row>
+          <Calendario />
+            
           </v-sheet>
     </v-container>
   </v-app>
@@ -96,12 +35,13 @@
 
 <script>
 
+import Calendario from './modalCalendario.vue'
  
 export default {
   name: 'App',
   
   components: {
-  
+    Calendario
   },
   data: () => ({
    model: '',
