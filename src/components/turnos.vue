@@ -14,7 +14,7 @@
     
     <div class="card-deck">
       <div class="row">
-        <div class="col" v-for="medico in medicosFiltradas" v-bind:key="medico.legajo">
+        <div class="col-md-3" v-for="medico in medicosFiltradas" v-bind:key="medico.legajo">
  <v-card
       class="mx-auto"
       max-width="344"
@@ -128,6 +128,46 @@ export default {
           hayTurno: true
         },
         {
+          nombre: "Medico",
+          apellido: "Neurologo",
+          legajo: 12311,
+          especialidad: "Obstetra",
+          foto: '../assets/medico.jpg',
+          hayTurno: false
+        },
+                {
+          nombre: "Medico",
+          apellido: "Neurologo",
+          legajo: 12311,
+          especialidad: "Obstetra",
+          foto: '../assets/medico.jpg',
+          hayTurno: false
+        },
+                {
+          nombre: "Medico",
+          apellido: "Neurologo",
+          legajo: 12311,
+          especialidad: "Obstetra",
+          foto: '../assets/medico.jpg',
+          hayTurno: false
+        },
+                {
+          nombre: "Medico",
+          apellido: "Neurologo",
+          legajo: 12311,
+          especialidad: "Obstetra",
+          foto: '../assets/medico.jpg',
+          hayTurno: false
+        },
+                {
+          nombre: "Medico",
+          apellido: "Neurologo",
+          legajo: 12311,
+          especialidad: "Obstetra",
+          foto: '../assets/medico.jpg',
+          hayTurno: false
+        },
+                {
           nombre: "Medico",
           apellido: "Neurologo",
           legajo: 12311,
