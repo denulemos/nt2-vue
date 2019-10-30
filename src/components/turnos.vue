@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <v-app>
      <input
       type="text"
       class="form-control"
@@ -54,9 +55,28 @@
         <b-modal class="modalTurnos" v-model="modalShow">
           
           <h1>Reservar Turno con {{nombreModal}}</h1>
+          <hr>
+          <h3>Ingrese su DNI</h3>
+           <input
+      type="text"
+      class="form-control"
+      
+    />
+
+    <v-col class="d-flex" cols="12" sm="6">
+          <v-select
+            :items="items"
+            label="Solo field"
+            dense
+            solo
+          ></v-select>
+        </v-col>
+
+
           </b-modal>
       </div>
     </div>
+      </v-app>
   </div>
 </template>
 <script>
@@ -68,7 +88,7 @@ export default {
       hayTurno: false, //Mostrar o no boton de reserva turnos
       criterioDeBusqueda: "",
       nombreModal : "",
-
+ items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
      modalShow: false,
       medicos: [
         {
