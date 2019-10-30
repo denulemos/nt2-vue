@@ -3,7 +3,7 @@
     id="app"
     class="container"
   >
-    
+
       <v-toolbar
         :extended="extended"
         :prominent="prominent"
@@ -28,10 +28,21 @@
   
        
       </v-toolbar>
+
     <hr>
+
     <router-view></router-view>
 
-
+<template>
+  <v-footer padless>
+    <v-col
+      class="text-center"
+      cols="12"
+    >
+      {{ new Date().getFullYear() }} — <strong>Placeholder</strong>
+    </v-col>
+  </v-footer>
+</template>
     
   </div>
 
