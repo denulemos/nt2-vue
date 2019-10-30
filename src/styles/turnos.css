@@ -8,3 +8,17 @@
   .modal-dialog{
         max-width: 838px;
   }
+
+
+  #nombre{
+    font-size: 1.15rem !important;
+  }
+
+  .card-deck{
+  width:100%
+  }
+
+  #container{
+    margin-right: -15px;
+    margin-left: 15px;
+  }

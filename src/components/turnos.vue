@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <v-app>
+      <div id="container">
      <input
       type="text"
       class="form-control"
@@ -10,7 +11,7 @@
      
     <br />
     <h2 v-text="`${medicosFiltradas.length} Medicos disponibles`"></h2>
-    <h5 v-text="`${legajosDistintos.length} legajos distintos`"></h5>
+    <!--<h5 v-text="`${legajosDistintos.length} legajos distintos`"></h5>-->
 
     
     <div class="card-deck">
@@ -24,7 +25,7 @@
       <v-list-item three-line>
         <v-list-item-content>
           <div class="overline mb-4">{{medico.especialidad}}</div>
-          <v-list-item-title class="headline mb-1">{{getNombreCompleto(medico)}}</v-list-item-title>
+          <v-list-item-title class="headline mb-1" id="nombre">{{getNombreCompleto(medico)}}</v-list-item-title>
           <v-list-item-subtitle>Legajo {{medico.legajo}}</v-list-item-subtitle>
         </v-list-item-content>
   
@@ -39,8 +40,8 @@
       </v-list-item>
   
       <v-card-actions >
-         <b-button depressed small @click="modalShow = true; nombreModal = getNombreCompleto(medico)"  v-if="medico.hayTurno">Reservar Turno</b-button>
-         <b-button depressed small disabled v-else>No hay turnos</b-button>
+         <v-btn depressed small color="success" @click="modalShow = true; nombreModal = getNombreCompleto(medico)"  v-if="medico.hayTurno">Reservar Turno</v-btn>
+         <v-btn depressed small disabled v-else>No hay turnos</v-btn>
          
         
        
@@ -76,6 +77,7 @@
           </b-modal>
       </div>
     </div>
+      </div>
       </v-app>
   </div>
 </template>
