@@ -1,5 +1,5 @@
 
-
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
 .v-application .align-center{
     -webkit-box-align:unset!important;
     align-items:unset!important;
@@ -18,7 +18,8 @@
  background: white;
  padding: 10px;
  margin-top: 217px;
- font-family: 'Roboto' , serif;
+ font-family: 'Roboto Slab' , serif;
+ font-weight: bold;
  }
 
 

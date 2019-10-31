@@ -15,7 +15,7 @@
       >
       
   
-        <v-toolbar-title>Placeholder</v-toolbar-title>
+        <v-toolbar-title class="tituloPagina">Placeholder</v-toolbar-title>
   
         <v-spacer></v-spacer>
   
@@ -79,9 +79,19 @@ export default {
 
 
 <style scoped>
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+
 @media (min-width: 1200px){
   .container{
     max-width: 1324px;
   }
 } 
+
+.tituloPagina{
+  font-family: 'Roboto Slab'; 
+  font-weight: bold;
+}
+
+
 </style>

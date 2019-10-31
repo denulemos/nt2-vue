@@ -42,7 +42,7 @@
       <v-card-actions >
          <v-btn depressed small color="success" @click="modalShow = true; nombreModal = getNombreCompleto(medico)"  v-if="medico.hayTurno">Reservar Turno</v-btn>
          <v-btn depressed small disabled v-else>No hay turnos</v-btn>
-         
+          <v-btn depressed small color="primary"   v-if="medico.hayTurno">Ver Ubicacion</v-btn>
         
        
       </v-card-actions>
