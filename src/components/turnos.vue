@@ -38,9 +38,15 @@
       </v-list-item>
   
       <v-card-actions >
+<<<<<<< Updated upstream
          <b-button depressed small @click="modalShow = true; nombreModal = getNombreCompleto(medico)"  v-if="medico.hayTurno">Reservar Turno</b-button>
          <b-button depressed small disabled v-else>No hay turnos</b-button>
          
+=======
+         <v-btn depressed small color="success" @click="modalShow = true; nombreModal = getNombreCompleto(medico);  especialidadModal = getEspecialidad(medico)" v-if="medico.hayTurno">Reservar Turno</v-btn>
+         <v-btn depressed small disabled v-else>No hay turnos</v-btn>
+          <v-btn depressed small color="primary"   v-if="medico.hayTurno">Ver Ubicacion</v-btn>
+>>>>>>> Stashed changes
         
        
       </v-card-actions>
@@ -51,10 +57,64 @@
          
 
         </div>
+<<<<<<< Updated upstream
         <b-modal class="modalTurnos" v-model="modalShow">
           
           <h1>Reservar Turno con {{nombreModal}}</h1>
           </b-modal>
+=======
+<template>
+  <v-row justify="center">
+    <v-dialog v-model="modalShow" persistent max-width="600px">
+      <v-card>
+        <v-card-title>
+          <span class="headline">Está solicitando un turno para {{especialidadModal}} con {{nombreModal}}</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field label="Nombre" required></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field
+                  label="Apellido"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field label="DNI" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field label="Email" required></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-select
+                  :items="['0-17', '18-29', '30-54', '54+']"
+                  label="Fecha"
+                  required
+                ></v-select>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-autocomplete
+                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
+                  label="Hora"
+                  required
+                ></v-autocomplete>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="modalShow = false">Cancelar</v-btn>
+          <v-btn color="blue darken-1" text @click="modalShow = false">Confirmar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row>
+</template>
+>>>>>>> Stashed changes
       </div>
     </div>
   </div>
@@ -77,7 +137,7 @@ export default {
           legajo: 12345,
           especialidad: "Obstetra",
           foto: "../assets/medico.jpg",
-          hayTurno: false
+          hayTurno: false,
         },
         {
           nombre: "Pepe Perez",
@@ -170,6 +230,9 @@ export default {
   methods: {
     getNombreCompleto(medico) {
       return `${medico.nombre} ${medico.apellido}`;
+    },
+    getEspecialidad(medico){
+      return `${medico.especialidad}`;
     },
     showModal() {
       this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
