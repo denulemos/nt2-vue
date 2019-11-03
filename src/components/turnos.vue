@@ -42,7 +42,7 @@
       <v-card-actions >
          <v-btn depressed small color="success" @click="modalShow = true; nombreModal = getNombreCompleto(medico)"  v-if="medico.hayTurno">Reservar Turno</v-btn>
          <v-btn depressed small disabled v-else>No hay turnos</v-btn>
-          <v-btn depressed small color="primary"   v-if="medico.hayTurno">Ver Ubicacion</v-btn>
+          <v-btn depressed small color="primary"  @click="modalUbicacionShow = true" v-if="medico.hayTurno">Ver Ubicacion</v-btn>
         
        
       </v-card-actions>
@@ -54,6 +54,7 @@
 
         </div>
 
+<!--Modal Turnos -->
 <template>
   <v-row justify="center">
     <v-dialog v-model="modalShow" persistent max-width="600px">
@@ -105,6 +106,26 @@
     </v-dialog>
   </v-row>
 </template>
+
+<!--Modal Ubicacion-->
+<template>
+  <v-row justify="center">
+    <v-dialog v-model="modalUbicacionShow" persistent max-width="600px">
+      <v-card>
+       <div class="mapouter"><div class="gmap_canvas">
+         <iframe width="398" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        </div>
+         </div>
+      
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="modalUbicacionShow = false">Cancelar</v-btn>
+          <v-btn color="blue darken-1" text @click="modalUbicacionShow = false">Confirmar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row>
+</template>
       </div>
     </div>
       </div>
@@ -122,6 +143,7 @@ export default {
       nombreModal : "",
  items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
      modalShow: false,
+     modalUbicacionShow:false,
       medicos: [
         {
           nombre: "Juan Perez",
@@ -279,4 +301,5 @@ export default {
 
 <style >
 @import '../styles/turnos.css';
+<style>.mapouter{position:relative;text-align:right;height:500px;width:398px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:345px;}
 </style>
