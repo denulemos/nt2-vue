@@ -24,6 +24,7 @@
           <v-btn text><router-link to="/turnos" tag="li" class="nav-link">Turnos</router-link></v-btn>
           <v-btn text> <router-link to="/medicos" tag="li" class="nav-link">Medicos</router-link></v-btn>
            <v-btn text><router-link to="/pacientes" tag="li" class="nav-link">Pacientes</router-link></v-btn>
+      
         </v-toolbar-items>
   
        

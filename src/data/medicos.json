@@ -1,122 +1,122 @@
 [
     {
-      "nombre": "Juan Perez",
-      "apellido": "Test 1",
+      "nombre": "Juan",
+      "apellido": "Perez",
       "legajo": 12345,
       "especialidad": "Obstetra",
       "foto": "../assets/medico.jpg",
       "hayTurno": false
     },
     {
-      "nombre": "Pepe Perez",
-      "apellido": "Test 1",
+      "nombre": "Pepe",
+      "apellido": "Lemos",
       "legajo": 12346,
       "especialidad": "Clinico",
       "foto": "../assets/medico.jpg",
       "hayTurno": true
     },
      {
-      "nombre": "Deno Lemon",
-      "apellido": "Test 1",
+      "nombre": "Deno",
+      "apellido": "Lemon",
       "legajo": 12342,
       "especialidad": "Dentista",
       "foto": "../assets/medico.jpg",
       "hayTurno": true
     },
      {
-      "nombre": "Elvis Cochuelo",
-      "apellido": "Test 1",
+      "nombre": "Elvis",
+      "apellido": "Cochuelo",
       "legajo": 12341,
       "especialidad": "Oftalmologo",
       "foto": "../assets/medico.jpg",
       "hayTurno": true
     },
      {
-      "nombre": "Medico",
-      "apellido": "Test 1",
+      "nombre": "Juan",
+      "apellido": "Lopez",
       "legajo": 12344,
       "especialidad": "Otorrinonaringologo",
       "foto": "../assets/medico.jpg",
       "hayTurno": true
     },
     {
-      "nombre": "Medico",
-      "apellido": "Test 1",
+      "nombre": "Denisse",
+      "apellido": "Lemos",
       "legajo": 12340,
       "especialidad": "Cardiologo",
-      "foto": '../assets/medico.jpg',
+      "foto": "../assets/medico.jpg",
       "hayTurno": false
     },
     {
-      "nombre": "Medico",
-      "apellido": "Test 1",
+      "nombre": "Zane",
+      "apellido": "Pelado",
       "legajo": 12300,
       "especialidad": "Ginecologo",
-      "foto": '../assets/medico.jpg',
+      "foto": "../assets/medico.jpg",
       "hayTurno": true
     },
     {
-      "nombre": "Medico",
-      "apellido": "Neurologo",
-      "legajo": 12311,
+      "nombre": "Gonzalo",
+      "apellido": "Mermelada",
+      "legajo": 12318,
       "especialidad": "Obstetra",
-      "foto": '../assets/medico.jpg',
+      "foto": "../assets/medico.jpg",
+      "hayTurno": false
+    },
+            {
+      "nombre": "Deno",
+      "apellido": "Lemonsky",
+      "legajo": 12313,
+      "especialidad": "Obstetra",
+      "foto": "../assets/medico.jpg",
       "hayTurno": false
     },
             {
       "nombre": "Medico",
       "apellido": "Neurologo",
-      "legajo": 12311,
+      "legajo": 12319,
       "especialidad": "Obstetra",
-      "foto": '../assets/medico.jpg',
+      "foto": "../assets/medico.jpg",
       "hayTurno": false
     },
             {
       "nombre": "Medico",
       "apellido": "Neurologo",
-      "legajo": 12311,
+      "legajo": 123111,
       "especialidad": "Obstetra",
-      "foto": '../assets/medico.jpg',
+      "foto": "../assets/medico.jpg",
       "hayTurno": false
     },
             {
       "nombre": "Medico",
       "apellido": "Neurologo",
-      "legajo": 12311,
+      "legajo": 123113,
       "especialidad": "Obstetra",
-      "foto": '../assets/medico.jpg',
+      "foto": "../assets/medico.jpg",
       "hayTurno": false
     },
             {
       "nombre": "Medico",
       "apellido": "Neurologo",
-      "legajo": 12311,
+      "legajo": 123151,
       "especialidad": "Obstetra",
-      "foto": '../assets/medico.jpg',
-      "hayTurno": false
-    },
-            {
-      "nombre": "Medico",
-      "apellido": "Neurologo",
-      "legajo": 12311,
-      "especialidad": "Obstetra",
-      "foto": '../assets/medico.jpg',
+      "foto": "../assets/medico.jpg",
       "hayTurno": false
     },
     {
       "nombre": "Medico",
       "apellido": "Pediatra",
-      "legajo": 12333,
+      "legajo": 123343,
       "especialidad": "Obstetra",
-      "foto": '../assets/medico.jpg',
+      "foto": "../assets/medico.jpg",
       "hayTurno": true
     },
     {
       "nombre": "Medico",
       "apellido": "Test 1",
-      "legajo": 12222,
+      "legajo": 122272,
       "especialidad": "Psiquiatra",
-      "foto": '../assets/medico.jpg',
+      "foto": "../assets/medico.jpg",
       "hayTurno": false
     }
   ]

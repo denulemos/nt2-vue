@@ -66,42 +66,10 @@ export default {
         notifications: false,
         sound: true,
         widgets: false,
-        today: new Date().getDay(),
-      events: [
-        {
-          name: 'Weekly Meeting',
-          start: '2019-01-07 09:00',
-          end: '2019-01-07 10:00',
-        },
-        {
-          name: 'Thomas\' Birthday',
-          start: '2019-01-10',
-        },
-        {
-          name: 'Mash Potatoes',
-          start: '2019-01-09 12:30',
-          end: '2019-01-09 15:30',
-        },
-        {
-          name: 'dsadasd ff',
-          start: '2019-10-25 13:30',
-          end: '2019-10-25 13:50'
-        }
-        ],
+        today: new Date().getDay()
   }),
 };
 </script>
-
-<style>
-.v-application .pa-12{
-    margin-top: 163px;
-}
-.v-label{
-font-size: 25px;
-}
-#inspire{
-  background-image: url('..\assets\fondo1.jpg');
-  background-size: contain;
-}
-
+<style scoped>
+@import '../styles/pacientes.css';
 </style>

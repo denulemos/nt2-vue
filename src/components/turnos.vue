@@ -2,22 +2,29 @@
   <div id="app">
     <v-app>
       <div id="container">
-     <input
-      type="text"
-      class="form-control"
-      v-model="criterioDeBusqueda"
-      placeholder="Ingresar un criterio de busqueda..."
-    />
+
+<v-col class="d-flex" cols="10" sm="12">
+     <!--Input Busqueda medicos -->
+     <input type="text" class="form-control" v-model="criterioDeBusqueda" placeholder="Ingresar un criterio de busqueda..." />
+     
+     <v-col class="d-flex" cols="12" sm="6">
+          <v-select
+            :items="especialidades"
+            label="Especialidades"
+            outlined
+            v-model="criterioDeBusqueda"
+          ></v-select>
+        </v-col>
+</v-col>
+    
      
     <br />
     <h2 v-text="`${medicosFiltradas.length} Medicos disponibles`"></h2>
-    <!--<h5 v-text="`${legajosDistintos.length} legajos distintos`"></h5>-->
-
     
     <div class="card-deck">
       <div class="row">
         <div class="col-md-3" v-for="medico in medicosFiltradas" v-bind:key="medico.legajo">
- <v-card
+     <v-card
       class="mx-auto"
       max-width="344"
       outlined
@@ -30,10 +37,9 @@
         </v-list-item-content>
   
         <v-list-item-avatar
-          tile
+          tile 
           size="80"
-          color="grey"
-        >
+          color="grey">
         <img src="../assets/medico.jpg"> 
         </v-list-item-avatar>
 
@@ -59,28 +65,30 @@
   <v-row justify="center">
     <v-dialog v-model="modalShow" persistent max-width="600px">
       <v-card>
-        <v-card-title>
-          <span class="headline">Está solicitando un turno para {{especialidadModal}} con {{nombreModal}}</span>
+        <v-card-title class="tituloFormu">
+          <span >Está solicitando un turno para {{especialidadModal}} con {{nombreModal}}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field label="Nombre" required></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  label="Apellido"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="DNI" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Email" required></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6">
+              <h5>Nombre</h5>
+         
+               <b-form-input v-model="text" required placeholder="Julia"></b-form-input>
+           
+               <h5>Apellido</h5>
+             
+               <b-form-input v-model="text" required placeholder="Lopez"></b-form-input>
+           
+             <h5>DNI</h5>
+            
+               <b-form-input v-model="text" required placeholder="12345678"></b-form-input>
+              
+               <h5>Email Valido</h5>
+             
+               <b-form-input v-model="text" required placeholder="Julia@gmail.com"></b-form-input>
+             <hr>
+              <hr>
+               <hr>              <v-col cols="12" sm="6">
                 <v-select
                   :items="['0-17', '18-29', '30-54', '54+']"
                   label="Fecha"
@@ -99,8 +107,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="modalShow = false">Cancelar</v-btn>
-          <v-btn color="blue darken-1" text @click="modalShow = false">Confirmar</v-btn>
+          <v-btn  color="blue darken-1" text @click="modalShow = false">Cancelar</v-btn>
+          <v-btn type="submit" color="blue darken-1" text @click="modalShow = false">Confirmar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -134,138 +142,20 @@
 </template>
 <script>
 
+ import medicos from '../data/medicos.json';
+ import axios from 'axios';
+
 export default {
-   
   data: function() {
     return {
-      hayTurno: false, //Mostrar o no boton de reserva turnos
-      criterioDeBusqueda: "",
-      nombreModal : "",
- items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-     modalShow: false,
-     modalUbicacionShow:false,
-      medicos: [
-        {
-          nombre: "Juan Perez",
-          apellido: "Test 1",
-          legajo: 12345,
-          especialidad: "Obstetra",
-          foto: "../assets/medico.jpg",
-          hayTurno: false
-        },
-        {
-          nombre: "Pepe Perez",
-          apellido: "Test 1",
-          legajo: 12346,
-          especialidad: "Clinico",
-          foto: "../assets/medico.jpg",
-          hayTurno: true
-        },
-         {
-          nombre: "Deno Lemon",
-          apellido: "Test 1",
-          legajo: 12342,
-          especialidad: "Dentista",
-          foto: "../assets/medico.jpg",
-          hayTurno: true
-        },
-         {
-          nombre: "Elvis Cochuelo",
-          apellido: "Test 1",
-          legajo: 12341,
-          especialidad: "Oftalmologo",
-          foto: "../assets/medico.jpg",
-          hayTurno: true
-        },
-         {
-          nombre: "Medico",
-          apellido: "Test 1",
-          legajo: 12344,
-          especialidad: "Otorrinonaringologo",
-          foto: "../assets/medico.jpg",
-          hayTurno: true
-        },
-        {
-          nombre: "Medico",
-          apellido: "Test 1",
-          legajo: 12340,
-          especialidad: "Cardiologo",
-          foto: '../assets/medico.jpg',
-          hayTurno: false
-        },
-        {
-          nombre: "Medico",
-          apellido: "Test 1",
-          legajo: 12300,
-          especialidad: "Ginecologo",
-          foto: '../assets/medico.jpg',
-          hayTurno: true
-        },
-        {
-          nombre: "Medico",
-          apellido: "Neurologo",
-          legajo: 12311,
-          especialidad: "Obstetra",
-          foto: '../assets/medico.jpg',
-          hayTurno: false
-        },
-                {
-          nombre: "Medico",
-          apellido: "Neurologo",
-          legajo: 12311,
-          especialidad: "Obstetra",
-          foto: '../assets/medico.jpg',
-          hayTurno: false
-        },
-                {
-          nombre: "Medico",
-          apellido: "Neurologo",
-          legajo: 12311,
-          especialidad: "Obstetra",
-          foto: '../assets/medico.jpg',
-          hayTurno: false
-        },
-                {
-          nombre: "Medico",
-          apellido: "Neurologo",
-          legajo: 12311,
-          especialidad: "Obstetra",
-          foto: '../assets/medico.jpg',
-          hayTurno: false
-        },
-                {
-          nombre: "Medico",
-          apellido: "Neurologo",
-          legajo: 12311,
-          especialidad: "Obstetra",
-          foto: '../assets/medico.jpg',
-          hayTurno: false
-        },
-                {
-          nombre: "Medico",
-          apellido: "Neurologo",
-          legajo: 12311,
-          especialidad: "Obstetra",
-          foto: '../assets/medico.jpg',
-          hayTurno: false
-        },
-        {
-          nombre: "Medico",
-          apellido: "Pediatra",
-          legajo: 12333,
-          especialidad: "Obstetra",
-          foto: '../assets/medico.jpg',
-          hayTurno: true
-        },
-        {
-          nombre: "Medico",
-          apellido: "Test 1",
-          legajo: 12222,
-          especialidad: "Psiquiatra",
-          foto: '../assets/medico.jpg',
-          hayTurno: false
-        }
-      ]
+    medicos : medicos,
+    listaEspecialidades: [],
+    hayTurno: false, //Mostrar o no boton de reserva turnos
+    criterioDeBusqueda: "",
+    nombreModal : "",
+    especialidades: ['Clinico', 'Dentista', 'Fizz', 'Buzz'],
+    modalShow: false,
+    modalUbicacionShow:false
     };
   },
   computed: {
@@ -282,6 +172,9 @@ export default {
     }
   },
   methods: {
+    getEspecialidades(){
+      axios.get('../data/especialidades.json').then(response => (this.listaEspecialidades = response.data));
+    },
     getNombreCompleto(medico) {
       return `${medico.nombre} ${medico.apellido}`;
     },
@@ -301,5 +194,5 @@ export default {
 
 <style >
 @import '../styles/turnos.css';
-<style>.mapouter{position:relative;text-align:right;height:500px;width:398px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:345px;}
+
 </style>

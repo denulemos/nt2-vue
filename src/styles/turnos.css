@@ -8,6 +8,9 @@
   .modal-dialog{
         max-width: 838px;
   }
+  .mapouter{position:relative;text-align:right;height:500px;width:398px;}
+  .gmap_canvas {overflow:hidden;background:none!important;height:500px;width:345px;}
+
 
 
   #nombre{
@@ -17,7 +20,15 @@
   .card-deck{
   width:100%
   }
+h5{
+  margin:10px;
+}
 
+.tituloFormu{
+background-color: darkseagreen;
+font-family: 'Roboto Slab'; 
+font-weight: bold;
+}
   #container{
     margin-right: -15px;
     margin-left: 15px;
