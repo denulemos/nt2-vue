@@ -2,24 +2,23 @@
   <div id="app">
     <v-app>
       <div id="container">
+<div>
+ <b-input-group>
+    <template v-slot:prepend>
+      <b-input-group-text >Busqueda</b-input-group-text>
+    </template>
+    <b-form-input v-model="criterioDeBusqueda"></b-form-input>
 
-<v-col class="d-flex" cols="10" sm="12">
-     <!--Input Busqueda medicos -->
-     <input type="text" class="form-control" v-model="criterioDeBusqueda" placeholder="Ingresar un criterio de busqueda..." />
-     
-     <v-col class="d-flex" cols="12" sm="6">
-          <v-select
-            :items="especialidades"
-            label="Especialidades"
-            outlined
-            v-model="criterioDeBusqueda"
-          ></v-select>
-        </v-col>
-</v-col>
-    
-     
+    <template v-slot:append>
+      <b-dropdown  text="Especialidad" variant="success">
+        <b-dropdown-item  v-for="(v , i)  in especialidadDistinta" v-bind:key="i"  v-model="criterioDeBusqueda" v-text="`${v}`">1 </b-dropdown-item>
+      </b-dropdown> 
+    </template>
+  </b-input-group>
+</div>
     <br />
-    <h2 v-text="`${medicosFiltradas.length} Medicos disponibles`"></h2>
+    <h2 class="tituloMedDisp" v-text="`${medicosFiltradas.length} Medicos disponibles`"></h2>
+   
     
     <div class="card-deck">
       <div class="row">
@@ -184,7 +183,7 @@ export default {
         },
         foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
         show: true,
-    especialidades: ['Clinico', 'Dentista', 'Obstetra', 'Cardiologo', 'Ginecologo', 'Psiquiatra'],
+   
     modalShow: false,
     modalUbicacionShow:false
     };
@@ -200,6 +199,9 @@ export default {
     },
     legajosDistintos() {
       return Array.from(new Set(this.medicos.map(p => p.legajo)));
+    },
+    especialidadDistinta(){
+      return Array.from(new Set(this.medicos.map(p => p.especialidad)));
     }
   },
   methods: {
