@@ -96,8 +96,8 @@
       "hayTurno": false
     },
             {
-      "nombre": "Medico",
-      "apellido": "Neurologo",
+      "nombre": "Facundo",
+      "apellido": "Lemon",
       "legajo": 123151,
       "especialidad": "Obstetra",
       "foto": "../assets/medico.jpg",

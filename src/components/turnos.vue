@@ -46,7 +46,7 @@
       </v-list-item>
   
       <v-card-actions >
-         <v-btn depressed small color="success" @click="modalShow = true; nombreModal = getNombreCompleto(medico)"  v-if="medico.hayTurno">Reservar Turno</v-btn>
+         <v-btn depressed small color="success" @click="modalShow = true; nombreModal = getNombreCompleto(medico); especialidadModal = getEspecialidad(medico)"  v-if="medico.hayTurno">Reservar Turno</v-btn>
          <v-btn depressed small disabled v-else>No hay turnos</v-btn>
           <v-btn depressed small color="primary"  @click="modalUbicacionShow = true" v-if="medico.hayTurno">Ver Ubicacion</v-btn>
         
@@ -68,48 +68,72 @@
         <v-card-title class="tituloFormu">
           <span >Está solicitando un turno para {{especialidadModal}} con {{nombreModal}}</span>
         </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <h5>Nombre</h5>
-         
-               <b-form-input v-model="text" required placeholder="Julia"></b-form-input>
-           
-               <h5>Apellido</h5>
-             
-               <b-form-input v-model="text" required placeholder="Lopez"></b-form-input>
-           
-             <h5>DNI</h5>
-            
-               <b-form-input v-model="text" required placeholder="12345678"></b-form-input>
-              
-               <h5>Email Valido</h5>
-             
-               <b-form-input v-model="text" required placeholder="Julia@gmail.com"></b-form-input>
-             <hr>
-              <hr>
-               <hr>              <v-col cols="12" sm="6">
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Fecha"
-                  required
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Hora"
-                  required
-                ></v-autocomplete>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
+       
+        <div>
+    <b-form @submit="onSubmit" @reset="onReset"  style="padding:30px">
+      <b-form-group
+        id="input-group-1"
+        label="Email:"
+        label-for="input-1"
+        description="Te enviaremos un mail de confirmacion de turno"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.email"
+          type="email"
+          required
+          placeholder="Enter email"
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-2" label="Nombre:" label-for="input-2">
+        <b-form-input
+          id="input-2"
+          v-model="form.name"
+          required
+          placeholder="Juan"
+        ></b-form-input>
+      </b-form-group>
+         <b-form-group id="input-group-3" label="Apellido:" label-for="input-2">
+        <b-form-input
+          id="input-2"
+          v-model="form.apellido"
+          required
+          placeholder="Perez"
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-4" label="Dia:" label-for="input-3">
+        <b-form-select
+          id="input-3"
+          v-model="form.food"
+          :options="foods"
+          required
+        ></b-form-select>
+      </b-form-group>
+       <b-form-group id="input-group-4" label="Hora:" label-for="input-3">
+        <b-form-select
+          id="input-3"
+          v-model="form.food"
+          :options="foods"
+          required
+        ></b-form-select>
+      </b-form-group>
+
+
+      <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn  color="blue darken-1" text @click="modalShow = false">Cancelar</v-btn>
           <v-btn type="submit" color="blue darken-1" text @click="modalShow = false">Confirmar</v-btn>
         </v-card-actions>
+
+    
+    </b-form>
+  
+  </div>
+       
+
+      
       </v-card>
     </v-dialog>
   </v-row>
@@ -120,15 +144,14 @@
   <v-row justify="center">
     <v-dialog v-model="modalUbicacionShow" persistent max-width="600px">
       <v-card>
-       <div class="mapouter"><div class="gmap_canvas">
-         <iframe width="398" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-        </div>
+      <div style="overflow:hidden;width: 700px;position: relative;"><iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=Famatina%204018%2C%20IOX%2C%20Buenos%20Aires%2C%20Argentina&key=AIzaSyBf09cFcLx6LjeOc57t0epUd4C36VJRCws" allowfullscreen></iframe>
+
          </div>
       
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="modalUbicacionShow = false">Cancelar</v-btn>
-          <v-btn color="blue darken-1" text @click="modalUbicacionShow = false">Confirmar</v-btn>
+          <v-btn color="blue darken-1" text @click="modalUbicacionShow = false">Cerrar</v-btn>
+         
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -153,7 +176,15 @@ export default {
     hayTurno: false, //Mostrar o no boton de reserva turnos
     criterioDeBusqueda: "",
     nombreModal : "",
-    especialidades: ['Clinico', 'Dentista', 'Fizz', 'Buzz'],
+      form: {
+          email: '',
+          name: '',
+          apellido: '',
+          checked: []
+        },
+        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+        show: true,
+    especialidades: ['Clinico', 'Dentista', 'Obstetra', 'Cardiologo', 'Ginecologo', 'Psiquiatra'],
     modalShow: false,
     modalUbicacionShow:false
     };
@@ -172,11 +203,31 @@ export default {
     }
   },
   methods: {
+     onSubmit(evt) {
+        evt.preventDefault()
+        alert(JSON.stringify(this.form))
+      },
+      onReset(evt) {
+        evt.preventDefault()
+        // Reset our form values
+        this.form.email = ''
+        this.form.name = ''
+        this.form.food = null
+        this.form.checked = []
+        // Trick to reset/clear native browser form validation state
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      },
     getEspecialidades(){
       axios.get('../data/especialidades.json').then(response => (this.listaEspecialidades = response.data));
     },
     getNombreCompleto(medico) {
       return `${medico.nombre} ${medico.apellido}`;
+    },
+    getEspecialidad(medico){
+      return `${medico.especialidad}`;
     },
     showModal() {
       this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')

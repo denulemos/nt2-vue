@@ -22,8 +22,8 @@
         <v-toolbar-items>
           <v-btn text><router-link to="/" tag="li" exact class="nav-link">Home</router-link></v-btn>
           <v-btn text><router-link to="/turnos" tag="li" class="nav-link">Turnos</router-link></v-btn>
-          <v-btn text> <router-link to="/medicos" tag="li" class="nav-link">Medicos</router-link></v-btn>
-           <v-btn text><router-link to="/pacientes" tag="li" class="nav-link">Pacientes</router-link></v-btn>
+          <v-btn text> <router-link to="/medicos" tag="li" class="nav-link">Consulta Medicos</router-link></v-btn>
+           <v-btn text><router-link to="/pacientes" tag="li" class="nav-link">Consulta Pacientes</router-link></v-btn>
       
         </v-toolbar-items>
   

@@ -8,11 +8,11 @@
   .modal-dialog{
         max-width: 838px;
   }
-  .mapouter{position:relative;text-align:right;height:500px;width:398px;}
-  .gmap_canvas {overflow:hidden;background:none!important;height:500px;width:345px;}
 
 
-
+.v-dialog{
+  overflow-y: inherit;
+}
   #nombre{
     font-size: 1.15rem !important;
   }
@@ -22,6 +22,10 @@
   }
 h5{
   margin:10px;
+}
+.contadorMedicos{
+  font-family: 'Roboto Slab'; 
+font-weight: bold;
 }
 
 .tituloFormu{

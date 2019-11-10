@@ -1,30 +1,28 @@
 [
     {
-        "id" :1,
         "nombreEspecialidad" : "Obstetra"
        },
        {
-        "id" :2,
         "nombreEspecialidad" : "Pediatra"
        },
        {
-        "id" :3,
+       
         "nombreEspecialidad" : "Clinico"
        },
        {
-        "id" :4,
+       
         "nombreEspecialidad" : "Otorrino"
        },
        {
-        "id" :5,
+        
         "nombreEspecialidad" : "Cardiologo"
        },
        {
-        "id" :6,
+      
         "nombreEspecialidad" : "Neurologo"
        },
        {
-        "id" :7,
+    
         "nombreEspecialidad" : "Deportologo"
        }
 
