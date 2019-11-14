@@ -143,7 +143,7 @@
   <v-row justify="center">
     <v-dialog v-model="modalUbicacionShow" persistent max-width="600px">
       <v-card>
-      <div style="overflow:hidden;width: 700px;position: relative;"><iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=Famatina%204018%2C%20IOX%2C%20Buenos%20Aires%2C%20Argentina&key=AIzaSyBf09cFcLx6LjeOc57t0epUd4C36VJRCws" allowfullscreen></iframe>
+      <div style="overflow:hidden;width: 700px;position: relative;"><iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=Famatina%204018%2C%20IOX%2C%20Buenos%20Aires%2C%20Argentina&key=AIzaSyDSDU_29QYkLeBel6eA_7qygQ7A8M8bayk" allowfullscreen></iframe>
 
          </div>
       
