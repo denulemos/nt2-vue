@@ -11,7 +11,7 @@
 
     <template v-slot:append>
       <b-dropdown  text="Especialidad" variant="success">
-        <b-dropdown-item  v-for="(v , i)  in especialidadDistinta" v-bind:key="i"  v-model="criterioDeBusqueda" v-text="`${v}`">1 </b-dropdown-item>
+        <b-dropdown-item  v-for="(v , i) in especialidadDistinta" :key="i" :value="i" @click="criterioDeBusqueda = v"  >{{v}}</b-dropdown-item>
       </b-dropdown> 
     </template>
   </b-input-group>

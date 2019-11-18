@@ -15,7 +15,7 @@
       >
       
   
-        <v-toolbar-title class="tituloPagina">Placeholder</v-toolbar-title>
+        <v-toolbar-title class="tituloPagina">MediTurnos</v-toolbar-title>
   
         <v-spacer></v-spacer>
   
@@ -40,7 +40,7 @@
       class="text-center"
       cols="12"
     >
-      {{ new Date().getFullYear() }} — <strong>Placeholder</strong>
+      {{ new Date().getFullYear() }} - <router-link to="/administrador" >Administrador</router-link>
     </v-col>
   </v-footer>
 </template>

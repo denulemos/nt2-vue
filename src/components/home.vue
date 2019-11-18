@@ -13,7 +13,7 @@
         
         max-height="620"
       ></v-img>
-      <h1 class="cartel">Placeholder</h1>
+      <h1 class="cartel">MediTurnos</h1>
        
     </v-row>
   </v-app>
