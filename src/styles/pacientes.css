@@ -4,9 +4,31 @@
 .v-label{
 font-size: 25px;
 }
-#inspire{
-  background-image: url('..\assets\fondo1.jpg');
-  background-size: contain;
+h2{
+  padding-left: 180px;
+  font-family: 'Roboto Slab' , serif;
+  font-weight: bold;
+  background-color: white;
+}
+.input{
+  margin-bottom: 20px;
+}
+.v-form{
+  background-color: white;
+  padding:40px;
+  margin:40px;
+  font-size: 14px;
+}
+#pacienteSide{
+  background-image: url('..\assets\fondo1.jpg')!important;
+  background-size: cover;
+  padding-bottom: 180px;
+  
+}
+
+#medicoSide {
+  background-image: url('..\assets\fondo2.jpg')!important;
+  background-size: cover;
 }
 
 .v-application .pa-12{

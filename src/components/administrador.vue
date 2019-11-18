@@ -1,10 +1,79 @@
 <template>
-<div id="app">
-<h1>Administrador</h1>
-</div>
+  <div>
+    <v-app>
+      <div id="container">
+<H3>Seccion Administrador</h3>
+ <b-card no-body>
+    <b-tabs card>
+      <b-tab title="Agregar Medico" active>
+        <b-card-text>Tab contents 1</b-card-text>
+      </b-tab>
+      <b-tab title="Ver Estatisticas">
+        <b-card-text>Tab contents 2</b-card-text>
+      </b-tab>
+        <b-tab title="Ver turnos" active>
+        <b-card-text>Tab contents 1</b-card-text>
+      </b-tab>
+      <b-tab title="Ver pacientes registrados" active>
+        <b-card-text>Tab contents 1</b-card-text>
+      </b-tab>
+    </b-tabs>
+  </b-card>
+        </div>
 
+<!--Modal Turnos -->
+<template>
+  <v-row justify="center">
+    <v-dialog v-model="modalShow" persistent max-width="600px">
+      <v-card>
+      <v-content>
+      <h3>Log in</h3>
+      <h4>{{admin.usuario}}</h4>
+      <input v-model="user" placeholder="Usuario">
+      <input v-model="password" placeholder="password">
+     <v-btn color="primary"  :click="modalShow = false">Login</v-btn>
+    </v-content>
+       
+
+      
+      </v-card>
+    </v-dialog>
+  </v-row>
 </template>
 
-<style scoped>
-@import '../styles/home.css';
+     
+     
+      </v-app>
+  </div>
+</template>
+<script>
+ import admin from '../data/admin.json';
+
+
+export default {
+  data: function() {
+    return {
+    modalShow: true,
+    user : "",
+    password: "",
+    admin : admin
+    };
+  },
+  computed: {
+   
+    
+  },
+  methods: {
+      isLoginValid(){
+          if (this.user == admin.usuario && this.password == admin.contraseña){
+              this.modalShow = false;
+          }
+      }
+  }
+};
+</script>
+
+<style >
+
+
 </style>

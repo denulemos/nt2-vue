@@ -1,0 +1,59 @@
+[
+  {
+    "legajo" : 12345,
+    "dniPaciente" : null,
+    "dia" : "12 de Octubre",
+    "hora" : "12:00",
+    "Pasado" : false
+  },
+  {
+    "legajo" : 12345,
+    "dniPaciente" : null,
+    "dia" : "12 de Octubre",
+    "hora" : "12:00",
+    "Pasado" : false
+  },
+  {
+    "legajo" : 12345,
+    "dniPaciente" : null,
+    "dia" : "12 de Octubre",
+    "hora" : "12:00",
+    "Pasado" : false
+  }, {
+    "legajo" : 12345,
+    "dniPaciente" : null,
+    "dia" : "12 de Octubre",
+    "hora" : "12:00",
+    "Pasado" : false
+  },
+  {
+    "legajo" : 12345,
+    "dniPaciente" : null,
+    "dia" : "12 de Octubre",
+    "hora" : "12:00",
+    "Pasado" : false
+  },
+  {
+    "legajo" : 12345,
+    "dniPaciente" : null,
+    "dia" : "12 de Octubre",
+    "hora" : "12:00",
+    "Pasado" : false
+  },
+  {
+    "legajo" : 12345,
+    "dniPaciente" : null,
+    "dia" : "12 de Octubre",
+    "hora" : "12:00",
+    "Pasado" : false
+  },
+  {
+    "legajo" : 12345,
+    "dniPaciente" : null,
+    "dia" : "12 de Octubre",
+    "hora" : "12:00",
+    "Pasado" : false
+  }
+
+
+]

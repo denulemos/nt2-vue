@@ -17,7 +17,7 @@
   </b-input-group>
 </div>
     <br />
-    <h2 class="tituloMedDisp" v-text="`${medicosFiltradas.length} Medicos disponibles`"></h2>
+    <h3 class="tituloMedDisp" v-text="`${medicosFiltradas.length} Medicos disponibles`"></h3>
    
     
     <div class="card-deck">
@@ -47,7 +47,7 @@
       <v-card-actions >
          <v-btn depressed small color="success" @click="modalShow = true; nombreModal = getNombreCompleto(medico); especialidadModal = getEspecialidad(medico)"  v-if="medico.hayTurno">Reservar Turno</v-btn>
          <v-btn depressed small disabled v-else>No hay turnos</v-btn>
-          <v-btn depressed small color="primary"  @click="modalUbicacionShow = true" v-if="medico.hayTurno">Ver Ubicacion</v-btn>
+          <v-btn depressed small color="primary"  @click="modalUbicacionShow = true" v-if="medico.hayTurno">Ubicacion</v-btn>
         
        
       </v-card-actions>

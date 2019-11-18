@@ -20,6 +20,6 @@
 </div>
 </template>
 
-<style scoped>
+<style >
 @import '../styles/home.css';
 </style>
