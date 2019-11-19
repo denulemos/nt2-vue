@@ -111,7 +111,7 @@ export default {
     user : "",
     turnos : turnos, 
     pacientes: pacientes,
-    medicos: medicos,
+    medicos: medicos, 
     password: "",
     admin : admin
     };
