@@ -1,122 +1,34 @@
-[
-    {
-      "nombre": "Juan",
-      "apellido": "Perez",
-      "legajo": 12345,
-      "especialidad": "Obstetra",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": false
-    },
-    {
-      "nombre": "Pepe",
-      "apellido": "Lemos",
-      "legajo": 12346,
-      "especialidad": "Clinico",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": true
-    },
-     {
-      "nombre": "Deno",
-      "apellido": "Lemon",
-      "legajo": 12342,
-      "especialidad": "Dentista",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": true
-    },
-     {
-      "nombre": "Elvis",
-      "apellido": "Cochuelo",
-      "legajo": 12341,
-      "especialidad": "Oftalmologo",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": true
-    },
-     {
-      "nombre": "Juan",
-      "apellido": "Lopez",
-      "legajo": 12344,
-      "especialidad": "Otorrinonaringologo",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": true
-    },
-    {
-      "nombre": "Denisse",
-      "apellido": "Lemos",
-      "legajo": 12340,
-      "especialidad": "Cardiologo",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": false
-    },
-    {
-      "nombre": "Zane",
-      "apellido": "Pelado",
-      "legajo": 12300,
-      "especialidad": "Ginecologo",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": true
-    },
-    {
-      "nombre": "Gonzalo",
-      "apellido": "Mermelada",
-      "legajo": 12318,
-      "especialidad": "Obstetra",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": false
-    },
-            {
-      "nombre": "Deno",
-      "apellido": "Lemonsky",
-      "legajo": 12313,
-      "especialidad": "Obstetra",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": false
-    },
-            {
-      "nombre": "Medico",
-      "apellido": "Neurologo",
-      "legajo": 12319,
-      "especialidad": "Obstetra",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": false
-    },
-            {
-      "nombre": "Medico",
-      "apellido": "Neurologo",
-      "legajo": 123111,
-      "especialidad": "Obstetra",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": false
-    },
-            {
-      "nombre": "Medico",
-      "apellido": "Neurologo",
-      "legajo": 123113,
-      "especialidad": "Obstetra",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": false
-    },
-            {
-      "nombre": "Facundo",
-      "apellido": "Lemon",
-      "legajo": 123151,
-      "especialidad": "Obstetra",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": false
-    },
-    {
-      "nombre": "Medico",
-      "apellido": "Pediatra",
-      "legajo": 123343,
-      "especialidad": "Obstetra",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": true
-    },
-    {
-      "nombre": "Medico",
-      "apellido": "Test 1",
-      "legajo": 122272,
-      "especialidad": "Psiquiatra",
-      "foto": "../assets/medico.jpg",
-      "hayTurno": false
-    }
-  ]
+[ 
+   { 
+      "id":1,
+      "legajo":1,
+      "nombre":"Juan",
+      "apellido":"perez",
+      "especialidad":"Odontologo",
+      "ubicacion":"-34.603651, -58.381678"
+   },
+   { 
+      "id":3,
+      "legajo":3,
+      "nombre":"Rey",
+      "apellido":"del Sol",
+      "especialidad":"Clinico",
+      "ubicacion":"-34.626294, -58.4242253"
+   },
+   { 
+      "id":4,
+      "legajo":4,
+      "nombre":"Anita",
+      "apellido":"Lapalatina",
+      "especialidad":"Clinico",
+      "ubicacion":"-34.6020826, -58.4314074"
+   },
+   { 
+      "id":5,
+      "legajo":5,
+      "nombre":"Denu",
+      "apellido":"Limon",
+      "especialidad":"Odontologo",
+      "ubicacion":"-34.656294, -58.4382253"
+   }
+]

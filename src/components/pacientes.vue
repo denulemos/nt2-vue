@@ -5,7 +5,7 @@
   <b-row>
 
     <b-col id= "medicoSide">
-      <h2>Sos medico?</h2>
+      <h3 class="tituloPacientesComp">Acceso Profesionales</h3>
       <v-form
       ref="form"
       v-model="valid"
@@ -24,7 +24,7 @@
   
       <v-btn
         :disabled="!valid"
-        color="success"
+        color="outline-primary"
         class="mr-4"
         @click="validate"
       >
@@ -32,7 +32,7 @@
       </v-btn>
   
       <v-btn
-        color="error"
+        color="outline-primary"
         class="mr-4"
         @click="reset"
       >
@@ -46,7 +46,7 @@
 
 
     <b-col id="pacienteSide">
-      <h2>Sos paciente?</h2> 
+      <h3 class="tituloPacientesComp">Acceso Pacientes</h3> 
       <v-form
       ref="form"
       v-model="valid"
@@ -65,7 +65,7 @@
   
       <v-btn
         :disabled="!valid"
-        color="success"
+        color="outline-primary"
         class="mr-4"
         @click="validate"
       >
@@ -73,7 +73,7 @@
       </v-btn>
   
       <v-btn
-        color="error"
+        color="outline-primary"
         class="mr-4"
         @click="reset"
       >

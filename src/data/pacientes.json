@@ -1,0 +1,37 @@
+[ 
+  { 
+     "dni":1,
+     "id":1,
+     "nombre":"Mariano",
+     "apellido":"Aquino",
+     "ubicacion":"-34.606294, -58.4282253"
+  },
+  { 
+     "dni":2,
+     "id":2,
+     "nombre":"zane",
+     "apellido":"zane",
+     "ubicacion":"-34.606294, -58.4282253"
+  },
+  { 
+     "dni":3,
+     "id":3,
+     "nombre":"pancho",
+     "apellido":"doto",
+     "ubicacion":"-34.606294, -58.4282253"
+  },
+  { 
+     "dni":4,
+     "id":4,
+     "nombre":"reyna",
+     "apellido":"rich",
+     "ubicacion":"-34.606294, -58.4282253"
+  },
+  { 
+     "dni":5,
+     "id":5,
+     "nombre":"lane",
+     "apellido":"gra",
+     "ubicacion":"-34.5470378, -58.5609443"
+  }
+]

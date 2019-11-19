@@ -4,11 +4,13 @@
 .v-label{
 font-size: 25px;
 }
-h2{
-  padding-left: 180px;
+.tituloPacientesComp{
+  padding-left: 160px;
   font-family: 'Roboto Slab' , serif;
-  font-weight: bold;
+  
+  margin-bottom: 110px;
   background-color: white;
+  border-radius: 4px;
 }
 .input{
   margin-bottom: 20px;
@@ -17,6 +19,7 @@ h2{
   background-color: white;
   padding:40px;
   margin:40px;
+  
   font-size: 14px;
 }
 #pacienteSide{
