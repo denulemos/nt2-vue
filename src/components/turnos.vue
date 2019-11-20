@@ -69,6 +69,7 @@
         </v-card-title>
        
         <div>
+          
     <b-form @submit="onSubmit" @reset="onReset"  style="padding:30px">
       <b-form-group
         id="input-group-1"
