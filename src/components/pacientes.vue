@@ -1,134 +1,56 @@
 <template>
-    <div id="app">
-      <v-app id="inspire">
- <b-container class="bv-example-row">
-  <b-row>
+  <div id="app">
+    
+  <div id="login">
+    <div id="description">
+      <h1>Login</h1>
+      <p>By logging in you agree to the ridiculously long terms that you didn't bother to read.</p>
+    </div>
+    <div id="form">
+      <form @submit.prevent="doLogin">
+        <label for="email">Email</label>
+        <input type="text" id="email" v-model="email" placeholder="me@example.com" autocomplete="off">
 
-    <b-col id= "medicoSide">
-      <h3 class="tituloPacientesComp">Acceso Profesionales</h3>
-      <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-    >
-    <div class="input">
-      <v-text-field
-        v-model="name"
-        :counter="10"
-        :rules="nameRules"
-        label="Legajo"
-        required
-       
-      ></v-text-field>
+        <label for="password">Password</label>&nbsp;
+        <i class="fas" :class="[passwordIcon]" @click="hidePassword = !hidePassword"></i>
+        <input :type="passwordType" id="password" v-model="password" placeholder="**********">
+
+        <button type="submit">Log in</button>
+      </form>
+    </div>
   </div>
-  
-      <v-btn
-        :disabled="!valid"
-        color="outline-primary"
-        class="mr-4"
-        @click="validate"
-      >
-        Acceder
-      </v-btn>
-  
-      <v-btn
-        color="outline-primary"
-        class="mr-4"
-        @click="reset"
-      >
-        Resetear Valor
-      </v-btn>
-  
-      
-    </v-form>
-      </b-col>
-
-
-
-    <b-col id="pacienteSide">
-      <h3 class="tituloPacientesComp">Acceso Pacientes</h3> 
-      <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-    >
-    <div class="input">
-      <v-text-field
-        v-model="name"
-        :counter="10"
-        :rules="nameRules"
-        label="Dni"
-        required
-      ></v-text-field>
+    
   </div>
-      
-  
-      <v-btn
-        :disabled="!valid"
-        color="outline-primary"
-        class="mr-4"
-        @click="validate"
-      >
-        Acceder
-      </v-btn>
-  
-      <v-btn
-        color="outline-primary"
-        class="mr-4"
-        @click="reset"
-      >
-        Resetear Valor
-      </v-btn>
-  
-    </v-form></b-col>
-
-
-
-  </b-row>
-</b-container>
-   </v-app>
-</div>
 </template>
 
 <script>
-
- 
 export default {
-  name: 'App',
-    data: () => ({
+  name: "App",
+  data: () => ({
     valid: true,
-    name: '',
+    name: "",
     nameRules: [
-      v => !!v || 'Name is required',
-      v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-    ],
-   
-  
-    
+      v => !!v || "Name is required",
+      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+    ]
   }),
-   
 
-  
   methods: {
-    validate () {
+    validate() {
       if (this.$refs.form.validate()) {
-        this.snackbar = true
+        this.snackbar = true;
       }
     },
-    reset () {
-      this.$refs.form.reset()
+    reset() {
+      this.$refs.form.reset();
     },
-    resetValidation () {
-      this.$refs.form.resetValidation()
-    },
-  },
-}
-
+    resetValidation() {
+      this.$refs.form.resetValidation();
+    }
+  }
+};
 </script>
 
 <style>
-
-@import '../styles/pacientes.css';
-
-
+@import "../styles/pacientes.css";
 </style>
