@@ -1,25 +1,10 @@
 <template>
   <div id="app">
-    
-  <div id="login">
-    <div id="description">
-      <h1>Login</h1>
-      <p>By logging in you agree to the ridiculously long terms that you didn't bother to read.</p>
-    </div>
-    <div id="form">
-      <form @submit.prevent="doLogin">
-        <label for="email">Email</label>
-        <input type="text" id="email" v-model="email" placeholder="me@example.com" autocomplete="off">
-
-        <label for="password">Password</label>&nbsp;
-        <i class="fas" :class="[passwordIcon]" @click="hidePassword = !hidePassword"></i>
-        <input :type="passwordType" id="password" v-model="password" placeholder="**********">
-
-        <button type="submit">Log in</button>
-      </form>
-    </div>
-  </div>
-    
+    <div clas="container">
+      <h1>Login medico</h1>
+      <p>Ingrese su legajo para consultar sus turnos</p>
+      </div>
+  
   </div>
 </template>
 

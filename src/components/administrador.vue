@@ -54,7 +54,7 @@
                   :disabled="!valid"
                   color="success"
                   class="mr-4"
-                  @click="validate"
+                  @click="showModalOk "
                 >
                   Validate
                 </v-btn>
@@ -193,6 +193,15 @@
         </b-card>
       </div>
 
+      <!-- Modal Ok -->
+<b-modal ref="my-modal" hide-footer title="Using Component Methods">
+      <div class="d-block text-center">
+        <h3>Hello From My Modal!</h3>
+      </div>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
+      <b-button class="mt-2" variant="outline-warning" block @click="toggleModal">Toggle Me</b-button>
+    </b-modal>
+
       <!--Modal Turnos -->
       <template>
         <v-row justify="center">
@@ -231,6 +240,7 @@ export default {
       criterioBusquedaTurnos: "",
       //Registro medico
       nombreMedico: "",
+     
       apellidoMedico: "",
       emailMedico: "",
       legajoMedico: "",
@@ -274,6 +284,9 @@ export default {
     getDni(pacientes) {
       return `${pacientes.dni}`;
     },
+     showModalOk() {
+        this.$refs['my-modal'].show()
+      },
     isLoginValid() {
       if (this.user == admin.usuario && this.password == admin.contraseña) {
         this.modalShow = false;
