@@ -10,6 +10,7 @@
         :dense="dense"
         :collapse="collapse"
         :flat="flat"
+        :color="'grey darken-4'" dark
         :src="bg ? 'https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg' : undefined"
         :extension-height="extensionHeight"
       >
@@ -85,7 +86,7 @@ export default {
 
 @media (min-width: 1200px){
   .container{
-    max-width: 1324px;
+    max-width: 1268px;
   }
 } 
 
@@ -93,6 +94,11 @@ export default {
   font-family: 'Roboto Slab'; 
   font-weight: bold;
 }
+
+.theme--dark.v-sheet{
+background-color: cadetblue!important;
+}
+
 
 
 </style>

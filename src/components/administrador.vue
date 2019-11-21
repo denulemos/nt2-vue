@@ -120,7 +120,8 @@
             </b-tab>
 
             <!--Turnos -->
-
+<div class="card-deck">
+          <div class="row">
             <b-tab title="Ver turnos" active>
               <div
                 class="col-md-3"
@@ -146,7 +147,7 @@
                 </v-card>
               </div>
             </b-tab>
-
+          </div></div>
             <!--Pacientes -->
 
             <b-tab title="Ver pacientes registrados" active>
@@ -182,10 +183,7 @@
                     </v-list-item-content>
                   </v-list-item>
 
-                  <!-- <v-card-actions>
-        <v-btn text>Cancelar Turno</v-btn>
-       
-      </v-card-actions> -->
+                  
                 </v-card>
               </div>
             </b-tab>
@@ -194,32 +192,18 @@
       </div>
 
       <!-- Modal Ok -->
-<b-modal ref="my-modal" hide-footer title="Using Component Methods">
+<b-modal ref="my-modal" hide-footer >
       <div class="d-block text-center">
-        <h3>Hello From My Modal!</h3>
+        <img class="medicoOk" src="https://cdn.pixabay.com/photo/2017/01/13/01/22/ok-1976099_640.png">
+        <h2>Medico agregado con exito!</h2>
       </div>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
-      <b-button class="mt-2" variant="outline-warning" block @click="toggleModal">Toggle Me</b-button>
+      
+     
+   
     </b-modal>
 
-      <!--Modal Turnos -->
-      <template>
-        <v-row justify="center">
-          <v-dialog v-model="modalShow" persistent max-width="600px">
-            <v-card>
-              <v-content>
-                <h3>Log in</h3>
-                <h4>{{ admin.usuario }}</h4>
-                <input v-model="user" placeholder="Usuario" />
-                <input v-model="password" placeholder="password" />
-                <v-btn color="primary" :click="(modalShow = false)"
-                  >Login</v-btn
-                >
-              </v-content>
-            </v-card>
-          </v-dialog>
-        </v-row>
-      </template>
+     
+      
     </v-app>
   </div>
 </template>
@@ -240,7 +224,6 @@ export default {
       criterioBusquedaTurnos: "",
       //Registro medico
       nombreMedico: "",
-     
       apellidoMedico: "",
       emailMedico: "",
       legajoMedico: "",
@@ -281,6 +264,9 @@ export default {
     getNombreCompletoMedico(medico) {
       return `${medico.nombre} ${medico.apellido}`;
     },
+    hideModal() {
+        this.$refs['my-modal'].hide()
+      },
     getDni(pacientes) {
       return `${pacientes.dni}`;
     },
@@ -296,4 +282,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@import "../styles/administrador.css";
+</style>
