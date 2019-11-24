@@ -10,7 +10,7 @@
         :dense="dense"
         :collapse="collapse"
         :flat="flat"
-        :color="'grey darken-4'" dark
+        :color="light-blue"
         :src="bg ? 'https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg' : undefined"
         :extension-height="extensionHeight"
       >

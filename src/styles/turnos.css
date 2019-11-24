@@ -27,7 +27,9 @@ h5{
   font-family: 'Roboto Slab'; 
 font-weight: bold;
 }
-
+.btn{
+  margin: 0px;
+}
 .tituloFormu{
 background-color: darkseagreen;
 font-family: 'Roboto Slab'; 

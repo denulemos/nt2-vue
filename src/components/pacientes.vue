@@ -71,15 +71,28 @@
             <div class="card-deck">
               <div class="row">
                 <b-tab title="Ver turnos propios" active>
-                  <div class="row">
-            <b-tab title="Ver turnos" active>
-               <b-table striped hover  :items="turnos">
-                
-
-               </b-table>
-           
-            </b-tab>
-          </div>
+                 <div class="card-deck">
+              <div class="row">
+                <b-tab title="Ver turnos" active>
+                  <b-table
+                    striped
+                    hover
+                    :items="turnos"
+                    selectable
+                    :select-mode="selectMode"
+                    @row-selected="onRowSelected"
+                    responsive="sm"
+                  >
+                  </b-table>
+                  <!-- TESTING -->
+                  <p>
+                    Selected Rows:<br />
+                    {{ selected }}
+                  </p>
+                  <b-button style="position: center" variant="danger">Eliminar turnos seleccionados</b-button>
+                </b-tab>
+              </div>
+            </div>
                  
                 </b-tab>
               </div>
@@ -97,14 +110,14 @@
                   max-width="600px"
                 >
                   <v-card>
-                  <v-col cols="12" sm="6" md="4">
-                    <p>Ingrese legajo para continuar </p>
-            <v-text-field
-              label="Solo"
-              solo
-              dense
-              v-model="medicoSearch"
-            ></v-text-field>
+                  <v-col >
+                    <h5 style="text-align:center">Ingrese legajo para continuar </h5>
+            <b-form @submit.stop.prevent>
+    <label for="text-password">Legajo</label>
+    <b-input type="password" id="text-password" aria-describedby="password-help-block"></b-input>
+   
+   </b-form>
+            
           </v-col>
                     <v-card-actions>
                       <v-spacer></v-spacer>

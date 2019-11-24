@@ -28,9 +28,9 @@
           v-text="`${medicosFiltradas.length} Medicos disponibles`"
         ></h3>
         <b-button variant="success" @click="modalUbicacionGeneralShow = true"
-          >Ver mapa de medicos</b-button
+          >Ver mapa de todos los medicos</b-button
         >
-
+         <b-button variant="warning">¿Que medicos tengo cercanos?</b-button>
         <div class="card-deck">
           <div class="row">
             <div

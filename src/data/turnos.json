@@ -1,30 +1,37 @@
 [
     {
-        "id" : 1,
-        "dia": "Jueves 25",
-        "hora": "12:30 pm",
-        "medicoId" : 1,
-        "pacienteId":1
+       "id":1,
+       "dia":"25/05/2020",
+       "hora":"12:30 pm",
+       "medicoId":1,
+       "pacienteId":1
     },
     {
-        "id" : 2,
-        "dia": "Jueves 22",
-        "hora": "12:00 pm",
-        "medicoId" : 2,
-        "pacienteId":1
+       "id":2,
+       "dia":"22/05/2020",
+       "hora":"12:00 pm",
+       "medicoId":2,
+       "pacienteId":1
     },
     {
-        "id" : 3,
-        "dia": "Martes 25",
-        "hora": "13:30 pm",
-        "medicoId" : 1,
-        "pacienteId":2
+       "id":3,
+       "dia":"27/05/2020",
+       "hora":"13:30 pm",
+       "medicoId":1,
+       "pacienteId":2
     },
     {
-        "id" : 4,
-        "dia": "Jueves 25",
-        "hora": "12:30 pm",
-        "medicoId" : 2,
-        "pacienteId":2
+       "id":4,
+       "dia":"26/05/2020",
+       "hora":"12:30 pm",
+       "medicoId":2,
+       "pacienteId":2
+    },
+    {
+       "id":5,
+       "dia":"23/07/2020",
+       "hora":"12:05 pm",
+       "medicoId":3,
+       "pacienteId":5
     }
-]
+ ]

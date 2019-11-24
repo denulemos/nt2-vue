@@ -6,6 +6,9 @@
         <b-card no-body>
           <b-tabs card>
             <b-tab title="Agregar Medico" active>
+              <h1>te encontraste con los jonas no deberias estar aca esta pagina esta rancia todavia gracias adios</h1>
+              <img src='..\assets\Joe_Jonas_Paparazzo_Presents_CloseUp.jpg'/>
+              
               <h1>Agregar medico</h1>
               <v-form ref="form" v-model="valid" lazy-validation>
                 <v-text-field
@@ -54,7 +57,7 @@
                   :disabled="!valid"
                   color="success"
                   class="mr-4"
-                  @click="showModalOk "
+                  @click="showModalOk"
                 >
                   Validate
                 </v-btn>
@@ -64,20 +67,30 @@
                 </v-btn>
               </v-form>
             </b-tab>
-          
-          
 
             <!--Turnos -->
-<div class="card-deck">
-          <div class="row">
-            <b-tab title="Ver turnos" active>
-               <b-table striped hover  :items="turnos">
-                
-
-               </b-table>
-           
-            </b-tab>
-          </div></div>
+            <div class="card-deck">
+              <div class="row">
+                <b-tab title="Ver turnos" active>
+                  <b-table
+                    striped
+                    hover
+                    :items="turnos"
+                    selectable
+                    :select-mode="selectMode"
+                    @row-selected="onRowSelected"
+                    responsive="sm"
+                  >
+                  </b-table>
+                  <!-- TESTING -->
+                  <p>
+                    Selected Rows:<br />
+                    {{ selected }}
+                  </p>
+                  <b-button style="position: center" variant="danger">Eliminar turnos seleccionados</b-button>
+                </b-tab>
+              </div>
+            </div>
             <!--Pacientes -->
 
             <b-tab title="Ver pacientes registrados" active>
@@ -89,35 +102,59 @@
                   v-model="criterioDeBusquedaPacientes"
                 ></b-form-input>
               </b-input-group>
-               <br />
+              <br />
               <h3
                 class="tituloMedDisp"
                 v-text="`${pacientesFiltradas.length} Pacientes registrados`"
               ></h3>
-               <br />
- <b-table striped hover  :items="pacientesFiltradas">
-                
-
-               </b-table>
-        
+              <br />
+                <b-button variant="info">Agregar Paciente manualmente</b-button>
+              <b-table striped hover :items="pacientesFiltradas"> </b-table>
             </b-tab>
           </b-tabs>
         </b-card>
       </div>
 
-      <!-- Modal Ok -->
-<b-modal ref="my-modal" hide-footer >
-      <div class="d-block text-center">
-        <img class="medicoOk" src="https://cdn.pixabay.com/photo/2017/01/13/01/22/ok-1976099_640.png">
-        <h2>Medico agregado con exito!</h2>
-      </div>
-      
-     
+  <template>
+              <v-row justify="center">
+                <v-dialog
+                  v-model="modalAdminShow"
+                  persistent
+                  max-width="600px"
+                >
+                  <v-card>
+                  <v-col >
+                    <h5 style="text-align:center">Ingreso Administrador</h5>
+            <b-form @submit.stop.prevent>
+    <label for="text-password">Password Administrador</label>
+    <b-input type="password" id="text-password" aria-describedby="password-help-block"></b-input>
    
-    </b-modal>
-
-     
-      
+   </b-form>
+            
+          </v-col>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="modalAdminShow = false "
+                        >Cerrar</v-btn
+                      >
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-row>
+            </template>
+      <!-- Modal Ok -->
+      <b-modal ref="my-modal" hide-footer>
+        <div class="d-block text-center">
+          <img
+            class="medicoOk animated bounce"
+            src="https://cdn.pixabay.com/photo/2017/01/13/01/22/ok-1976099_640.png"
+          />
+          <h2>Medico agregado con exito!</h2>
+        </div>
+      </b-modal>
     </v-app>
   </div>
 </template>
@@ -127,12 +164,12 @@ import admin from "../data/admin.json";
 import medicos from "../data/medicos.json";
 import pacientes from "../data/pacientes.json";
 
-
 export default {
   data: function() {
     return {
       modalShow: true,
       user: "",
+      modalAdminShow : true,
       criterioDeBusquedaPacientes: "",
       criterioBusquedaMedicos: "",
       criterioBusquedaTurnos: "",
@@ -140,6 +177,7 @@ export default {
       nombreMedico: "",
       apellidoMedico: "",
       emailMedico: "",
+      selected: [],
       legajoMedico: "",
       ubicacionMedico: "",
       turnos: turnos,
@@ -150,7 +188,7 @@ export default {
       admin: admin
     };
   },
-  
+
   computed: {
     pacientesFiltradas() {
       return this.pacientes.filter(pacientes => {
@@ -177,14 +215,17 @@ export default {
       return `${medico.nombre} ${medico.apellido}`;
     },
     hideModal() {
-        this.$refs['my-modal'].hide()
-      },
+      this.$refs["my-modal"].hide();
+    },
+    onRowSelected(turnos) {
+      this.selected = turnos;
+    },
     getDni(pacientes) {
       return `${pacientes.dni}`;
     },
-     showModalOk() {
-        this.$refs['my-modal'].show()
-      },
+    showModalOk() {
+      this.$refs["my-modal"].show();
+    },
     isLoginValid() {
       if (this.user == admin.usuario && this.password == admin.contraseña) {
         this.modalShow = false;
