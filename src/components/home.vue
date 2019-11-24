@@ -11,8 +11,11 @@
         ></v-img>
         <h1 class="cartel">MediTurnos</h1>
       </v-row>
+
     </v-app>
   </div>
+
+  
 </template>
 
 <style>

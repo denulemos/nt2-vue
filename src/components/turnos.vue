@@ -27,6 +27,8 @@
           class="tituloMedDisp"
           v-text="`${medicosFiltradas.length} Medicos disponibles`"
         ></h3>
+          <b-button variant="success" @click="
+                      modalUbicacionGeneralShow  = true;">Ver mapa de medicos</b-button>
 
         <div class="card-deck">
           <div class="row">
@@ -231,6 +233,35 @@
                 </v-dialog>
               </v-row>
             </template>
+
+            <!-- Ubicacion general -->
+              <template>
+              <v-row justify="center">
+                <v-dialog
+                  v-model="modalUbicacionGeneralShow"
+                  persistent
+                  max-width="639px"
+                >
+                  <v-card>
+                    <div
+                      style="overflow:hidden;width: 700px;position: relative;"
+                    >
+                      <iframe src="https://www.google.com/maps/d/embed?mid=1x3Ey31iQ-Y5en0LLUFT-a_3rtKlWRYy2" width="640" height="480"></iframe>
+                    </div>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="modalUbicacionGeneralShow = false"
+                        >Cerrar</v-btn
+                      >
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-row>
+            </template>
           </div>
         </div>
       </div>
@@ -238,13 +269,13 @@
   </div>
 </template>
 <script>
-import medicos from "../data/medicos.json";
-import axios from "axios";
+// import medicos from "../data/medicos.json";
+
 
 export default {
   data: function() {
     return {
-      medicos: medicos,
+      medicos: null,
       listaEspecialidades: [],
       hayTurno: false, //Mostrar o no boton de reserva turnos
       criterioDeBusqueda: "",
@@ -265,9 +296,17 @@ export default {
       show: true,
 
       modalShow: false,
-      modalUbicacionShow: false
+      modalUbicacionShow: false,
+      modalUbicacionGeneralShow : false
     };
   },
+  mounted(){
+let url = 'http://localhost:3000/'
+    this.axios
+      .get(url+'medicos')
+      .then(response => (this.medicos = response))
+  },
+  
   computed: {
     medicosFiltradas() {
       return this.medicos.filter(medico => {
@@ -301,11 +340,6 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
-    },
-    getEspecialidades() {
-      axios
-        .get("../data/especialidades.json")
-        .then(response => (this.listaEspecialidades = response.data));
     },
     getNombreCompleto(medico) {
       return `${medico.nombre} ${medico.apellido}`;

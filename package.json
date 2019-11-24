@@ -11,6 +11,7 @@
     "axios": "^0.19.0",
     "bootstrap-vue": "^2.0.4",
     "core-js": "^3.1.2",
+    "google-maps-api-loader": "^1.1.1",
     "mdvue": "0.0.1",
     "pure-vue-chart": "^0.3.4",
     "vue": "^2.6.10",

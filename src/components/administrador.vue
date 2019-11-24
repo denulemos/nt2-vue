@@ -64,88 +64,18 @@
                 </v-btn>
               </v-form>
             </b-tab>
-            <b-tab title="Ver Estatisticas">
-              <b-card-text>
-                <div class="contenedorStatidisticas">
-                  <p>Top de medicos con turnos</p>
-                  <pure-vue-chart
-                    :points="[1, 4, 5, 3, 4]"
-                    :show-y-axis="false"
-                    :show-x-axis="true"
-                    :width="400"
-                    :height="200"
-                    :show-values="true"
-                    :use-month-labels="true"
-                    :months="[
-                      'Jan',
-                      'Fev',
-                      'Mar',
-                      'Abr',
-                      'Mai',
-                      'Jun',
-                      'Jul',
-                      'Ago',
-                      'Set',
-                      'Out',
-                      'Nov',
-                      'Dez'
-                    ]"
-                  />
-                  <p>Top de pacientes con turnos</p>
-                  <pure-vue-chart
-                    :points="[1, 4, 5, 3, 4]"
-                    :show-y-axis="false"
-                    :show-x-axis="true"
-                    :width="400"
-                    :height="200"
-                    :show-values="true"
-                    :use-month-labels="true"
-                    :months="[
-                      'Jan',
-                      'Fev',
-                      'Mar',
-                      'Abr',
-                      'Mai',
-                      'Jun',
-                      'Jul',
-                      'Ago',
-                      'Set',
-                      'Out',
-                      'Nov',
-                      'Dez'
-                    ]"
-                  />
-                </div>
-              </b-card-text>
-            </b-tab>
+          
+          
 
             <!--Turnos -->
 <div class="card-deck">
           <div class="row">
             <b-tab title="Ver turnos" active>
-              <div
-                class="col-md-3"
-                v-for="turnos in turnosFiltradas"
-                v-bind:key="turnos.id"
-              >
-                <v-card class="mx-auto" max-width="344" outlined>
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="overline mb-4">Turno {{turnos.id}}</div>
-                      <v-list-item-title class="headline mb-1"
-                        >Medico {{turnos.medicoId}} Paciente{{turnos.pacienteId}}</v-list-item-title
-                      >
-                      <v-list-item-subtitle
-                        >{{turnos.dia}} {{turnos.hora}}</v-list-item-subtitle
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
+               <b-table striped hover  :items="turnos">
+                
 
-                  <v-card-actions>
-                    <v-btn text>Cancelar Turno</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </div>
+               </b-table>
+           
             </b-tab>
           </div></div>
             <!--Pacientes -->
@@ -159,33 +89,17 @@
                   v-model="criterioDeBusquedaPacientes"
                 ></b-form-input>
               </b-input-group>
+               <br />
               <h3
                 class="tituloMedDisp"
                 v-text="`${pacientesFiltradas.length} Pacientes registrados`"
               ></h3>
+               <br />
+ <b-table striped hover  :items="pacientesFiltradas">
+                
 
-              <div
-                class="col-md-3"
-                v-for="pacientes in pacientesFiltradas"
-                v-bind:key="pacientes.dni"
-              >
-                <v-card class="mx-auto" max-width="344" outlined>
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="overline mb-4">Dni {{ pacientes.dni }}</div>
-                      <v-list-item-title class="headline mb-1"
-                        >{{ pacientes.nombre }}
-                        {{ pacientes.apellido }}</v-list-item-title
-                      >
-                      <v-list-item-subtitle>{{
-                        pacientes.email
-                      }}</v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-
-                  
-                </v-card>
-              </div>
+               </b-table>
+        
             </b-tab>
           </b-tabs>
         </b-card>
@@ -212,7 +126,7 @@ import turnos from "../data/turnos.json";
 import admin from "../data/admin.json";
 import medicos from "../data/medicos.json";
 import pacientes from "../data/pacientes.json";
-import PureVueChart from "pure-vue-chart";
+
 
 export default {
   data: function() {
@@ -236,9 +150,7 @@ export default {
       admin: admin
     };
   },
-  components: {
-    PureVueChart
-  },
+  
   computed: {
     pacientesFiltradas() {
       return this.pacientes.filter(pacientes => {
