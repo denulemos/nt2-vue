@@ -284,13 +284,15 @@
 </template>
 
 <script>
-import medicos from "../data/medicos.json";
+// import medicos from "../data/medicos.json";
 import turnos from "../data/turnos.json";
 import pacientes from "../data/pacientes.json";
+// import axios from 'axios';
+// import VueAxios from 'vue-axios';
 export default {
   data: function() {
     return {
-      medicos: medicos,
+      medicos: null,
       turnos: turnos,
       pacientes: pacientes,
       busquedaPacientes: "",
@@ -313,20 +315,16 @@ export default {
       modalUbicacionGeneralShow: false
     };
   },
-  //   mounted(){
-  // // let url = 'http://localhost:3000/'
-  //     this.axios
-  //       // .get(url+'medicos')
-  //       .get('src/data/medicos.json')
-  //       .then(response => (this.medicos = response))
-  //   },
 
-  computed: {
+
+  created: {
+  
     medicosFiltradas() {
+      this.axios.get('http://localhost:3000/medicos/').then(response => (this.medicos = response.data.data));
       return this.medicos.filter(medico => {
         let registroConcatenado = `${medico.nombre}${medico.apellido}${medico.legajo}${medico.especialidad}`;
-        return registroConcatenado
-          .toLowerCase()
+     return registroConcatenado
+         .toLowerCase()
           .includes(this.criterioDeBusqueda.toLowerCase());
       });
     },
@@ -337,11 +335,16 @@ export default {
       return Array.from(new Set(this.medicos.map(p => p.especialidad)));
     }
   },
+
+  
+
+
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
     },
+    
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
@@ -384,13 +387,7 @@ export default {
       );
       this.busquedaPacientes = "";
     },
-    tieneTurnos() {
-      // var id = medico.id;
-
-      /* eslint-disable no-console */
-      console.log(turnos);
-      /* eslint-enable no-console */
-    },
+    
     toggleModal() {
       this.$root.$emit("bv::toggle::modal", "modal-1", "#btnToggle");
     }

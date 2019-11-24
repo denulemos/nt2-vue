@@ -45,8 +45,8 @@
               dark
             >
               <v-list-item-content>
-                <v-list-item-title class="title">Marcus Obrien</v-list-item-title>
-                <v-list-item-subtitle>Network Engineer</v-list-item-subtitle>
+                <v-list-item-title class="title"> {{this.medico.nombre}} {{this.medico.apellido}}</v-list-item-title>
+                <v-list-item-subtitle>{{this.medico.especialidad}}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-col>
@@ -57,10 +57,10 @@
     <v-col>
     <h3>Informacion en Sistema </h3>
     <ul>
-      <li>Legajo</li>
-      <li>Id en sistema</li>
-      <li>Especialidad</li>
-      <li>Email</li>
+      <li>Legajo => {{this.medico.legajo}}</li>
+      <li>Id en sistema => {{this.medico.id}}</li>
+      <li>Especialidad => {{this.medico.especialidad}}</li>
+      <li>Email => {{this.medico.especialidad}}</li>
       <li>Cantidad de turnos totales</li>
       </ul>
     </v-col>
@@ -74,6 +74,7 @@
                  <div class="card-deck">
               <div class="row">
                 <b-tab title="Ver turnos" active>
+                
                   <b-table
                     striped
                     hover
@@ -112,9 +113,10 @@
                   <v-card>
                   <v-col >
                     <h5 style="text-align:center">Ingrese legajo para continuar </h5>
+                    
             <b-form @submit.stop.prevent>
     <label for="text-password">Legajo</label>
-    <b-input type="password" id="text-password" aria-describedby="password-help-block"></b-input>
+    <b-input type="password" v-model="medicoSearch" id="text-password" aria-describedby="password-help-block"></b-input>
    
    </b-form>
             
@@ -139,21 +141,24 @@
 <script>
  import turnos from "../data/turnos.json";
 // import admin from "../data/admin.json";
-import medicos from "../data/medicos.json";
+ import medicos from "../data/medicos.json";
 // import pacientes from "../data/pacientes.json";
 
 export default {
   data: function() {
     return {
       modalShow: true,
-      medico : null,
+      medico : "vacio",
       medicos : medicos,
       medicoSearch : "",
-      turnos: turnos
+      turnos: turnos,
+     
+
      
     };
   },
 
+ 
   computed: {
     pacientesFiltradas() {
       return this.pacientes.filter(pacientes => {
@@ -182,10 +187,8 @@ export default {
     hideModal() {
       this.$refs["my-modal"].hide();
     },
-  getMedico(legajo) {
-    this.medico =  this.medicos.map(p => p.legajo === legajo);
-
-      
+    getMedico(legajo) {
+    this.axios.get('http://localhost:3000/medicos/' + legajo).then(response => (this.medico = response.data.data))   
     },
     showModalOk() {
       this.$refs["my-modal"].show();
