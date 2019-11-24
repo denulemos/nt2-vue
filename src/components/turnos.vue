@@ -27,8 +27,9 @@
           class="tituloMedDisp"
           v-text="`${medicosFiltradas.length} Medicos disponibles`"
         ></h3>
-          <b-button variant="success" @click="
-                      modalUbicacionGeneralShow  = true;">Ver mapa de medicos</b-button>
+        <b-button variant="success" @click="modalUbicacionGeneralShow = true"
+          >Ver mapa de medicos</b-button
+        >
 
         <div class="card-deck">
           <div class="row">
@@ -63,6 +64,8 @@
                       modalShow = true;
                       nombreModal = getNombreCompleto(medico);
                       especialidadModal = getEspecialidad(medico);
+                      form.horaMedico = getHoraMedico(medico);
+                      form.diaMedico = getDiaMedico(medico);
                     "
                     v-if="medico.hayTurno"
                     >Reservar Turno</v-btn
@@ -91,19 +94,25 @@
                         {{ especialidadModal }} con {{ nombreModal }}</span
                       >
                     </v-card-title>
- <div>
-  <b-input-group
-    
- 
-    class="mb-3"
-    prepend="¿Registrado? Ingresa tu DNI para autocompletar tus datos"
-  >
-    <b-form-input></b-form-input>
-    <b-input-group-append>
-      <b-button size="sm" text="Button" variant="success">Buscar</b-button>
-    </b-input-group-append>
-  </b-input-group>
-</div>
+                    <div>
+                      <b-input-group
+                        class="mb-3"
+                        prepend="¿Registrado? Ingresa tu DNI para autocompletar tus datos"
+                      >
+                        <b-form-input
+                          v-model="busquedaPacientes"
+                        ></b-form-input>
+                        <b-input-group-append>
+                          <b-button
+                            size="sm"
+                            text="Button"
+                            variant="success"
+                            :click="buscarPaciente(busquedaPacientes)"
+                            >Buscar</b-button
+                          >
+                        </b-input-group-append>
+                      </b-input-group>
+                    </div>
                     <div>
                       <b-form
                         @submit="onSubmit"
@@ -157,8 +166,8 @@
                         >
                           <b-form-select
                             id="input-3"
-                            v-model="form.food"
-                            :options="foods"
+                            v-model="form.diaMedico"
+                            :options="diaMedico"
                             required
                           ></b-form-select>
                         </b-form-group>
@@ -169,8 +178,8 @@
                         >
                           <b-form-select
                             id="input-3"
-                            v-model="form.food"
-                            :options="foods"
+                            v-model="form.horaMedico"
+                            :options="horaMedico"
                             required
                           ></b-form-select>
                         </b-form-group>
@@ -178,7 +187,8 @@
                         <v-card-actions>
                           <v-spacer></v-spacer>
                           <v-btn
-                            color="blue darken-1"
+                            color="error"
+                            dark
                             text
                             @click="modalShow = false"
                             >Cancelar</v-btn
@@ -235,7 +245,7 @@
             </template>
 
             <!-- Ubicacion general -->
-              <template>
+            <template>
               <v-row justify="center">
                 <v-dialog
                   v-model="modalUbicacionGeneralShow"
@@ -246,7 +256,11 @@
                     <div
                       style="overflow:hidden;width: 700px;position: relative;"
                     >
-                      <iframe src="https://www.google.com/maps/d/embed?mid=1x3Ey31iQ-Y5en0LLUFT-a_3rtKlWRYy2" width="640" height="480"></iframe>
+                      <iframe
+                        src="https://www.google.com/maps/d/embed?mid=1x3Ey31iQ-Y5en0LLUFT-a_3rtKlWRYy2"
+                        width="640"
+                        height="480"
+                      ></iframe>
                     </div>
 
                     <v-card-actions>
@@ -268,14 +282,19 @@
     </v-app>
   </div>
 </template>
+
 <script>
-// import medicos from "../data/medicos.json";
-
-
+import medicos from "../data/medicos.json";
+import turnos from "../data/turnos.json";
+import pacientes from "../data/pacientes.json";
 export default {
   data: function() {
     return {
-      medicos: null,
+      medicos: medicos,
+      turnos: turnos,
+      pacientes: pacientes,
+      busquedaPacientes: "",
+      pacienteEncontrado: null,
       listaEspecialidades: [],
       hayTurno: false, //Mostrar o no boton de reserva turnos
       criterioDeBusqueda: "",
@@ -284,29 +303,24 @@ export default {
         email: "",
         name: "",
         apellido: "",
-        checked: []
+        checked: [],
+        horaMedico: [],
+        diaMedico: []
       },
-      foods: [
-        { text: "Select One", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn"
-      ],
       show: true,
-
       modalShow: false,
       modalUbicacionShow: false,
-      modalUbicacionGeneralShow : false
+      modalUbicacionGeneralShow: false
     };
   },
-  mounted(){
-let url = 'http://localhost:3000/'
-    this.axios
-      .get(url+'medicos')
-      .then(response => (this.medicos = response))
-  },
-  
+  //   mounted(){
+  // // let url = 'http://localhost:3000/'
+  //     this.axios
+  //       // .get(url+'medicos')
+  //       .get('src/data/medicos.json')
+  //       .then(response => (this.medicos = response))
+  //   },
+
   computed: {
     medicosFiltradas() {
       return this.medicos.filter(medico => {
@@ -333,7 +347,8 @@ let url = 'http://localhost:3000/'
       // Reset our form values
       this.form.email = "";
       this.form.name = "";
-      this.form.food = null;
+      this.form.horaMedico = null;
+      this.form.diaMedico = null;
       this.form.checked = [];
       // Trick to reset/clear native browser form validation state
       this.show = false;
@@ -344,6 +359,16 @@ let url = 'http://localhost:3000/'
     getNombreCompleto(medico) {
       return `${medico.nombre} ${medico.apellido}`;
     },
+    getHoraMedico(medico) {
+      return Array.from(
+        new Set(this.turnos.map(p => p.medicoId === medico.id))
+      );
+    },
+    getDiaMedico(medico) {
+      return Array.from(
+        new Set(this.turnos.map(p => p.medicoId === medico.id))
+      );
+    },
     getEspecialidad(medico) {
       return `${medico.especialidad}`;
     },
@@ -352,6 +377,19 @@ let url = 'http://localhost:3000/'
     },
     hideModal() {
       this.$root.$emit("bv::hide::modal", "modal-1", "#btnShow");
+    },
+    buscarPaciente(busquedaPacientes) {
+      this.pacienteEncontrado = this.pacientes.filter(
+        d => d.dni === busquedaPacientes
+      );
+      this.busquedaPacientes = "";
+    },
+    tieneTurnos() {
+      // var id = medico.id;
+
+      /* eslint-disable no-console */
+      console.log(turnos);
+      /* eslint-enable no-console */
     },
     toggleModal() {
       this.$root.$emit("bv::toggle::modal", "modal-1", "#btnToggle");
