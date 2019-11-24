@@ -70,7 +70,7 @@
 
             <!--Turnos -->
             <div class="card-deck">
-              <div class="row">
+              <div class="row" style="margin-left:25px; margin-right:18px;">
                 <b-tab title="Ver turnos" active>
                   <b-table
                     striped
@@ -124,23 +124,24 @@
                 >
                   <v-card>
                   <v-col >
-                    <h5 style="text-align:center">Ingreso Administrador</h5>
+                    <h5 style="text-align:center">Ingreso Administrador</h5>  
             <b-form @submit.stop.prevent>
     <label for="text-password">Password Administrador</label>
-    <b-input type="password" id="text-password" aria-describedby="password-help-block"></b-input>
+ 
+    <b-input type="password" id="password" v-model="password" aria-describedby="password-help-block"></b-input>
    
    </b-form>
-            
-          </v-col>
-                    <v-card-actions>
+              <v-card-actions>
                       <v-spacer></v-spacer>
                       <v-btn
                         color="blue darken-1"
                         text
-                        @click="modalAdminShow = false "
-                        >Cerrar</v-btn
+                        @click="isLoginValid(password)"
+                        >Ingresar</v-btn
                       >
                     </v-card-actions>
+          </v-col>
+                  
                   </v-card>
                 </v-dialog>
               </v-row>
@@ -160,7 +161,6 @@
 </template>
 <script>
 import turnos from "../data/turnos.json";
-import admin from "../data/admin.json";
 import medicos from "../data/medicos.json";
 import pacientes from "../data/pacientes.json";
 
@@ -183,11 +183,11 @@ export default {
       turnos: turnos,
       pacientes: pacientes,
       medicos: medicos,
-
       password: "",
-      admin: admin
+      validPassword: "test"
     };
   },
+
 
   computed: {
     pacientesFiltradas() {
@@ -198,6 +198,7 @@ export default {
           .includes(this.criterioDeBusquedaPacientes.toLowerCase());
       });
     },
+   
     turnosFiltradas() {
       return this.turnos.filter(turnos => {
         let registroConcatenado = `${turnos.dia}${turnos.hora}`;
@@ -226,10 +227,11 @@ export default {
     showModalOk() {
       this.$refs["my-modal"].show();
     },
-    isLoginValid() {
-      if (this.user == admin.usuario && this.password == admin.contraseña) {
-        this.modalShow = false;
+    isLoginValid(password) {
+      if (password == this.validPassword) {
+        this.modalAdminShow = false;
       }
+
     }
   }
 };

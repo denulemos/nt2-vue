@@ -69,7 +69,7 @@
 
             <!--Turnos -->
             <div class="card-deck">
-              <div class="row">
+              <div class="row" style="margin-left:25px; margin-right:18px;">
                 <b-tab title="Ver turnos propios" active>
                  <div class="card-deck">
               <div class="row">
@@ -78,7 +78,7 @@
                   <b-table
                     striped
                     hover
-                    :items="turnos"
+                    :items="turnosFiltradas(turnos)"
                     selectable
                     :select-mode="selectMode"
                     @row-selected="onRowSelected"
@@ -151,7 +151,7 @@ export default {
       medico : "vacio",
       medicos : medicos,
       medicoSearch : "",
-      turnos: turnos,
+      turnos: turnos
      
 
      
@@ -160,6 +160,12 @@ export default {
 
  
   computed: {
+
+    // turnosFiltradas(){
+    //   return this.turnos.filter(turnos => {
+    //     return turnos.medicoId == this.medico.id;
+    //   })
+    // },
     pacientesFiltradas() {
       return this.pacientes.filter(pacientes => {
         let registroConcatenado = `${pacientes.nombre}${pacientes.apellido}${pacientes.dni}`;
@@ -167,15 +173,15 @@ export default {
           .toLowerCase()
           .includes(this.criterioDeBusquedaPacientes.toLowerCase());
       });
-    },
-    turnosFiltradas() {
-      return this.turnos.filter(turnos => {
-        let registroConcatenado = `${turnos.dia}${turnos.hora}`;
-        return registroConcatenado
-          .toLowerCase()
-          .includes(this.criterioBusquedaTurnos.toLowerCase());
-      });
     }
+    // turnosFiltradas() {
+    //   return this.turnos.filter(turnos => {
+    //     let registroConcatenado = `${turnos.dia}${turnos.hora}`;
+    //     return registroConcatenado
+    //       .toLowerCase()
+    //       .includes(this.criterioBusquedaTurnos.toLowerCase());
+    //   });
+    // }
   },
   methods: {
     getNombreCompletoPaciente(pacientes) {
@@ -184,11 +190,17 @@ export default {
     getNombreCompletoMedico(medico) {
       return `${medico.nombre} ${medico.apellido}`;
     },
+    turnosFiltradas(){
+      return this.turnos.filter(turnos => {
+        return turnos.medicoId == this.medico.id;
+      })
+    },
     hideModal() {
       this.$refs["my-modal"].hide();
     },
     getMedico(legajo) {
-    this.axios.get('http://localhost:3000/medicos/' + legajo).then(response => (this.medico = response.data.data))   
+    this.axios.get('http://localhost:3000/medicos/' + legajo).then(response => (this.medico = response.data.data))
+
     },
     showModalOk() {
       this.$refs["my-modal"].show();
