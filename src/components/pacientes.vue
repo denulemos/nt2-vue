@@ -126,7 +126,7 @@
                       <v-btn
                         color="blue darken-1"
                         text
-                        @click="modalShow = false , getMedico(medicoSearch)"
+                        @click=" getMedico(medicoSearch)"
                         >Cerrar</v-btn
                       >
                     </v-card-actions>
@@ -200,7 +200,9 @@ export default {
     },
     getMedico(legajo) {
     this.axios.get('http://localhost:3000/medicos/' + legajo).then(response => (this.medico = response.data.data))
-
+  if (this.medicoSearch != "" && this.medico != "vacio" ){
+    this.modalShow = false
+  }
     },
     showModalOk() {
       this.$refs["my-modal"].show();
