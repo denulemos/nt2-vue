@@ -284,7 +284,7 @@
 </template>
 
 <script>
-// import medicos from "../data/medicos.json";
+import medicos from "../data/medicos.json";
 import turnos from "../data/turnos.json";
 import pacientes from "../data/pacientes.json";
 // import axios from 'axios';
@@ -292,7 +292,7 @@ import pacientes from "../data/pacientes.json";
 export default {
   data: function() {
     return {
-      medicos: null,
+      medicos: medicos,
       turnos: turnos,
       pacientes: pacientes,
       busquedaPacientes: "",
@@ -320,7 +320,7 @@ export default {
   created: {
   
     medicosFiltradas() {
-      this.axios.get('http://localhost:3000/medicos/').then(response => (this.medicos = response.data.data));
+     
       return this.medicos.filter(medico => {
         let registroConcatenado = `${medico.nombre}${medico.apellido}${medico.legajo}${medico.especialidad}`;
      return registroConcatenado

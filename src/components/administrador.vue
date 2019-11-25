@@ -86,8 +86,10 @@
                   <p>
                     Selected Rows:<br />
                     {{ selected }}
+                    {{mensajeExito}}
                   </p>
-                  <b-button style="position: center" variant="danger">Eliminar turnos seleccionados</b-button>
+
+                  <b-button style="position: center" @click=" showAvisoOk" variant="danger">Eliminar turnos seleccionados</b-button>
                 </b-tab>
               </div>
             </div>
@@ -156,6 +158,27 @@
           <h2>Medico agregado con exito!</h2>
         </div>
       </b-modal>
+      <!-- Modal eliminacion medico --> 
+       <b-modal ref="my-modal-aviso" hide-footer>
+        <div class="d-block text-center">
+          <img
+            class="medicoOk animated bounce"
+            src="../assets/atencion.png"
+          />
+          <br/>
+           <br/>
+          <h2>Estas por eliminar el turno ID {{selected.id}}, continuar?</h2>
+          <br/>
+           <v-btn
+                        color="blue darken-1"
+                        text
+                        
+                        >Continuar</v-btn
+                      >
+                  
+          
+        </div>
+      </b-modal>
     </v-app>
   </div>
 </template>
@@ -177,8 +200,9 @@ export default {
       nombreMedico: "",
       apellidoMedico: "",
       emailMedico: "",
-      selected: [],
+      selected: "",
       legajoMedico: "",
+      mensajeExito: "",
       ubicacionMedico: "",
       turnos: turnos,
       pacientes: pacientes,
@@ -226,6 +250,12 @@ export default {
     },
     showModalOk() {
       this.$refs["my-modal"].show();
+    },
+    showAvisoOk(){
+       this.$refs["my-modal-aviso"].show();
+    },
+    eliminarTurno (id){
+      this.axios.delete('http://localhost:3000/turnos/' + id).then(response => (this.mensajeExito = response))
     },
     isLoginValid(password) {
       if (password == this.validPassword) {
