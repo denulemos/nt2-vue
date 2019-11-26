@@ -5,16 +5,25 @@
       "nombre":"Juan",
       "apellido":"perez",
       "especialidad":"Odontologo",
-      "ubicacion":"-34.603651, -58.381678",
+      "ubicacion":
+         {
+            "latitud":"-34.603651",
+            "longitud":"-58.381678"
+         },
       "hayTurno" : true
    },
-   { 
+   {
       "id":3,
       "legajo":3,
       "nombre":"Rey",
       "apellido":"del Sol",
       "especialidad":"Clinico",
-      "ubicacion":"-34.626294, -58.4242253"
+      "ubicacion":
+      {
+         "latitud":"-34.611278",
+         "longitud":"-58.453899"
+      },
+      "hayTurno" : true
    },
    { 
       "id":4,
@@ -22,7 +31,11 @@
       "nombre":"Anita",
       "apellido":"Lapalatina",
       "especialidad":"Clinico",
-      "ubicacion":"-34.6020826, -58.4314074"
+      "ubicacion":
+      {
+         "latitud":"-34.611278",
+         "longitud":"-58.453899"
+      }
    },
    { 
       "id":5,
@@ -30,6 +43,10 @@
       "nombre":"Denu",
       "apellido":"Limon",
       "especialidad":"Odontologo",
-      "ubicacion":"-34.656294, -58.4382253"
+      "ubicacion":
+      {
+         "latitud":"-34.611278",
+         "longitud":"-58.453899"
+      }
    }
 ]

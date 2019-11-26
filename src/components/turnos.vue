@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <div id="container">
-        <div>
+              <div id= "busqueda">
           <b-input-group>
             <template v-slot:prepend>
               <b-input-group-text>Busqueda</b-input-group-text>
@@ -23,9 +22,17 @@
           </b-input-group>
         </div>
         <br />
+        <v-container>
+    <v-row no-gutters>
+      <v-col
+        cols="12"
+        sm="6"
+        md="8"
+      >
+        <div id="container">
+
         <h3
           class="tituloMedDisp"
-          v-text="`${medicosFiltradas.length} Medicos disponibles`"
         ></h3>
         <b-button variant="success" @click="modalUbicacionGeneralShow = true"
           >Ver mapa de todos los medicos</b-button
@@ -34,7 +41,7 @@
         <div class="card-deck">
           <div class="row">
             <div
-              class="col-md-3"
+              class="col-md-5"
               v-for="medico in medicosFiltradas"
               v-bind:key="medico.legajo"
             >
@@ -76,7 +83,7 @@
                     small
                     color="primary"
                     @click="
-                    modalUbicacionShow = true;
+                    //modalUbicacionShow = true;
                     getLatitud(medico);
                     getLongitud(medico);
                     "
@@ -86,6 +93,27 @@
                 </v-card-actions>
               </v-card>
             </div>
+          </div>
+          </div>
+      </div>
+      </v-col>
+      <v-col
+        cols="3"
+        md="4"
+      >
+                      <iframe
+                        width="350"
+                        height="400"
+                        frameborder="0"
+                        style="border:0"
+                        :src= "`https://www.google.com/maps/embed/v1/search?key=AIzaSyDSDU_29QYkLeBel6eA_7qygQ7A8M8bayk&q=${latitud},${longitud}`"
+                        allowfullscreen
+                      ></iframe>
+      </v-col>
+    </v-row>
+  </v-container>
+
+
 
             <!--Modal Turnos -->
             <template>
@@ -280,12 +308,11 @@
                 </v-dialog>
               </v-row>
             </template>
-          </div>
-        </div>
-      </div>
+
     </v-app>
   </div>
 </template>
+
 
 <script>
 import medicos from "../data/medicos.json";
@@ -299,8 +326,8 @@ export default {
       medicos: medicos,
       turnos: turnos,
       pacientes: pacientes,
-      latitud: 0,
-      longitud: 0,
+      latitud: -34.651819,
+      longitud: -58.440095,
       busquedaPacientes: "",
       pacienteEncontrado: null,
       listaEspecialidades: [],
