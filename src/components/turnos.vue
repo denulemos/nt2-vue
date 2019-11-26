@@ -75,7 +75,11 @@
                     depressed
                     small
                     color="primary"
-                    @click="modalUbicacionShow = true"
+                    @click="
+                    modalUbicacionShow = true;
+                    getLatitud(medico);
+                    getLongitud(medico);
+                    "
                     v-if="medico.hayTurno"
                     >Ubicacion</v-btn
                   >
@@ -225,11 +229,11 @@
                         height="450"
                         frameborder="0"
                         style="border:0"
-                        src="https://www.google.com/maps/embed/v1/search?q=Famatina%204018%2C%20IOX%2C%20Buenos%20Aires%2C%20Argentina&key=AIzaSyDSDU_29QYkLeBel6eA_7qygQ7A8M8bayk"
+                        :src= "`https://www.google.com/maps/embed/v1/search?key=AIzaSyDSDU_29QYkLeBel6eA_7qygQ7A8M8bayk&q=${latitud},${longitud}`"
                         allowfullscreen
                       ></iframe>
-                    </div>
 
+                    </div>
                     <v-card-actions>
                       <v-spacer></v-spacer>
                       <v-btn
@@ -295,6 +299,8 @@ export default {
       medicos: medicos,
       turnos: turnos,
       pacientes: pacientes,
+      latitud: 0,
+      longitud: 0,
       busquedaPacientes: "",
       pacienteEncontrado: null,
       listaEspecialidades: [],
@@ -317,7 +323,7 @@ export default {
   },
 
 
-  created: {
+  computed: {
   
     medicosFiltradas() {
      
@@ -361,6 +367,12 @@ export default {
     },
     getNombreCompleto(medico) {
       return `${medico.nombre} ${medico.apellido}`;
+    },
+    getLatitud(medico) {
+      this.latitud = `${medico.ubicacion.latitud}`
+    },
+    getLongitud(medico) {
+      this.longitud = `${medico.ubicacion.longitud}`
     },
     getHoraMedico(medico) {
       return Array.from(
