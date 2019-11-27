@@ -228,6 +228,7 @@
                       @click="
                         turno.fecha = v.fecha;
                         turno.horario = v.horario;
+                        turno.id = v.id;
                       "
                       >{{ v.fecha }} {{ v.horario }}</b-dropdown-item
                     >
@@ -241,7 +242,7 @@
                     <v-btn color="error" dark text @click="modalShow = false"
                       >Cancelar</v-btn
                     >
-                    <v-btn color="blue darken-1" text @click="tomarTurno()"
+                    <v-btn color="blue darken-1" text @click="tomarTurno(turno.fecha , turno.horario, medicoSeleccion, turno.id)"
                       >Confirmar</v-btn
                     >
                     <v-btn
@@ -384,7 +385,7 @@ export default {
         horario: "",
         medicoId: "",
         pacienteId: "",
-        id: Math.ceil(Math.random() * 10)
+        id: ""
       },
 
       pacientes: null,
@@ -527,17 +528,17 @@ export default {
     hideModal() {
       this.$root.$emit("bv::hide::modal", "modal-1", "#btnShow");
     },
-    tomarTurno() {
+    tomarTurno(fecha, horario, medico, turno) {
       if (this.registro){
         this.registrarUsuario()
       }
       this.axios.post('http://localhost:3000/turnos',{
         codigo: this.turno.codigo,
-        id : this.turno.id,
-        fecha: this.turno.fecha,
-        horario : this.turno.horario,
-        medicoId : this.turno.medicoId,
-        pacienteId : this.turno.pacienteId
+        id : turno,
+        fecha: fecha,
+        horario : horario,
+        medicoId : medico,
+        pacienteId : this.busquedaPacientes
       }).then(response =>{
         alert(response)
       }).catch(e => {
