@@ -5,12 +5,11 @@
         <H3>Seccion Administrador</H3>
         <b-card no-body>
           <b-tabs card>
-            <b-tab title="Agregar Medico" active>
-              <h1>te encontraste con los jonas no deberias estar aca esta pagina esta rancia todavia gracias adios</h1>
-              <img src='..\assets\Joe_Jonas_Paparazzo_Presents_CloseUp.jpg'/>
+            <!-- <b-tab title="Agregar Medico" active>
+             
               
-              <h1>Agregar medico</h1>
-              <v-form ref="form" v-model="valid" lazy-validation>
+              <h1 style="background-color: antiquewhite; text-align: center">Agregar medico</h1>
+              <v-form ref="form" v-model="valid" lazy-validation style="padding:50px">
                 <v-text-field
                   v-model="nombreMedico"
                   :counter="10"
@@ -52,21 +51,21 @@
                   label="Donde esta ubicado? Reemplazar por mapa"
                   required
                 ></v-text-field>
-
+<br/>
                 <v-btn
                   :disabled="!valid"
                   color="success"
                   class="mr-4"
                   @click="showModalOk"
                 >
-                  Validate
+                  Agregar
                 </v-btn>
 
                 <v-btn color="error" class="mr-4" @click="reset">
-                  Reset Form
+                  Resetear Formulario
                 </v-btn>
               </v-form>
-            </b-tab>
+            </b-tab> -->
 
             <!--Turnos -->
             <div class="card-deck">
@@ -75,21 +74,22 @@
                   <b-table
                     striped
                     hover
-                    :items="turnos"
+                    :items="turnosFiltradas"
                     selectable
+                    v-model= this.selected
                     :select-mode="selectMode"
                     @row-selected="onRowSelected"
                     responsive="sm"
                   >
                   </b-table>
                   <!-- TESTING -->
-                  <p>
+                  <!-- <p>
                     Selected Rows:<br />
                     {{ selected }}
-                    {{mensajeExito}}
-                  </p>
+                   
+                  </p> -->
 
-                  <b-button style="position: center" @click=" showAvisoOk" variant="danger">Eliminar turnos seleccionados</b-button>
+                  <b-button style="position: center" @click=" showAvisoOk" v-if="selected != []" variant="danger">Eliminar turno seleccionado</b-button>
                 </b-tab>
               </div>
             </div>
@@ -110,7 +110,7 @@
                 v-text="`${pacientesFiltradas.length} Pacientes registrados`"
               ></h3>
               <br />
-                <b-button variant="info">Agregar Paciente manualmente</b-button>
+               
               <b-table striped hover :items="pacientesFiltradas"> </b-table>
             </b-tab>
           </b-tabs>
@@ -172,7 +172,7 @@
            <v-btn
                         color="blue darken-1"
                         text
-                        
+                        v-on:click ="eliminarTurno(selected.id)"
                         >Continuar</v-btn
                       >
                   
@@ -183,7 +183,7 @@
   </div>
 </template>
 <script>
-import turnos from "../data/turnos.json";
+// import turnos from "../data/turnos.json";
 import medicos from "../data/medicos.json";
 import pacientes from "../data/pacientes.json";
 
@@ -192,6 +192,7 @@ export default {
     return {
       modalShow: true,
       user: "",
+    
       modalAdminShow : true,
       criterioDeBusquedaPacientes: "",
       criterioBusquedaMedicos: "",
@@ -204,7 +205,7 @@ export default {
       legajoMedico: "",
       mensajeExito: "",
       ubicacionMedico: "",
-      turnos: turnos,
+      turnos: "",
       pacientes: pacientes,
       medicos: medicos,
       password: "",
@@ -212,7 +213,14 @@ export default {
     };
   },
 
-
+mounted(){
+     this.axios.get('http://localhost:3000/turnos/',{
+      }).then(response =>{
+        this.turnos = response.data;
+      }).catch(e => {
+        alert(e)
+      })
+},
   computed: {
     pacientesFiltradas() {
       return this.pacientes.filter(pacientes => {
@@ -224,12 +232,18 @@ export default {
     },
    
     turnosFiltradas() {
-      return this.turnos.filter(turnos => {
+      if (this.turnos != ""){
+        return Array.from(new Set(this.turnos.data.filter(turnos => {
         let registroConcatenado = `${turnos.dia}${turnos.hora}`;
         return registroConcatenado
           .toLowerCase()
           .includes(this.criterioBusquedaTurnos.toLowerCase());
-      });
+      })));
+      }
+      else{
+        return null
+      }
+      
     }
   },
   methods: {
@@ -254,9 +268,19 @@ export default {
     showAvisoOk(){
        this.$refs["my-modal-aviso"].show();
     },
-    eliminarTurno (id){
-      this.axios.delete('http://localhost:3000/turnos/' + id).then(response => (this.mensajeExito = response))
+   eliminarTurno(id) {
+     if (id != "" && id != undefined){
+        this.axios.delete('http://localhost:3000/turno/' + id,{
+      }).then(response =>{
+        alert(response)
+      }).catch(e => {
+        alert(e)
+      })
+     }
+     
+
     },
+    
     isLoginValid(password) {
       if (password == this.validPassword) {
         this.modalAdminShow = false;

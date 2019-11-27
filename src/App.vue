@@ -23,7 +23,7 @@
         <v-toolbar-items>
           <v-btn text><router-link to="/" tag="li" exact class="nav-link">Home</router-link></v-btn>
           <v-btn text><router-link to="/turnos" tag="li" class="nav-link">Turnos</router-link></v-btn>
- <v-btn text><router-link to="/pacientes" tag="li" class="nav-link">Administrador Medicos</router-link></v-btn>
+ <v-btn text><router-link to="/pacientes" tag="li" class="nav-link">Administrador Pacientes</router-link></v-btn>
  
       
         </v-toolbar-items>
@@ -41,7 +41,7 @@
       class="text-center"
       cols="12"
     >
-      {{ new Date().getFullYear() }} - <router-link to="/administrador" >Administrador</router-link> 
+      {{ new Date().getFullYear() }} - <router-link to="/administrador" >Administrador</router-link> -  <router-link to="/medicos" >Administrador Medico</router-link>
     </v-col>
   </v-footer>
 </template>

@@ -2,13 +2,13 @@
   <div>
     <v-app>
       <div id="container">
-        <H3>Seccion Pacientes</H3>
-        <div class="alert alert-primary" role="alert">
-  Bienvenido {{paciente.nombre}}
+        <H3>Seccion Profesional</H3>
+        <div class="alert alert-success" role="alert">
+ Bienvenido {{medico.nombre}}
 </div>
         <b-card no-body>
           <b-tabs card>
-            <!-- <b-tab  title="Informacion Paciente" active>
+            <!-- <b-tab  title="Informacion Medico" active>
               <div class="tarjetaInfoMedico">
               <v-col>
             <v-card
@@ -20,7 +20,7 @@
     >
       <v-img
         height="100%"
-        src="../assets/fondo1.jpg"
+        src="../assets/fondo2.jpg"
       >
         <v-row
           align="end"
@@ -48,8 +48,8 @@
               dark
             >
               <v-list-item-content>
-                <v-list-item-title class="title"> {{this.paciente.nombre}} {{this.paciente.apellido}}</v-list-item-title>
-                <v-list-item-subtitle>Usuario activo de la plataforma</v-list-item-subtitle>
+                <v-list-item-title class="title"> {{this.medico.nombre}} {{this.medico.apellido}}</v-list-item-title>
+                <v-list-item-subtitle>{{this.medico.especialidad}}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-col>
@@ -60,10 +60,10 @@
     <v-col>
     <h3>Informacion en Sistema </h3>
     <ul>
-    
-      <li>Id en sistema => {{this.paciente.id}}</li>
-    
-      <li>Email => {{this.paciente.especialidad}}</li>
+      <li>Legajo => {{this.medico.legajo}}</li>
+      <li>Id en sistema => {{this.medico.id}}</li>
+      <li>Especialidad => {{this.medico.especialidad}}</li>
+      <li>Email => {{this.medico.especialidad}}</li>
       <li>Cantidad de turnos totales</li>
       </ul>
     </v-col>
@@ -73,8 +73,10 @@
             <!--Turnos -->
             <div class="card-deck">
               <div class="row" style="margin-left:25px; margin-right:18px;">
+             
                 <b-tab title="Ver turnos propios" active>
                  <div class="card-deck">
+                    
               <div class="row">
                 <b-tab title="Ver turnos" active>
                 
@@ -115,11 +117,11 @@
                 >
                   <v-card>
                   <v-col >
-                    <h5 style="text-align:center">Ingrese DNI para continuar </h5>
+                    <h5 style="text-align:center">Ingrese legajo para continuar </h5>
                     
             <b-form @submit.stop.prevent>
-    <label for="text-password">dni</label>
-    <b-input type="password" v-model="pacienteSearch" id="text-password" aria-describedby="password-help-block"></b-input>
+    <label for="text-password">Legajo</label>
+    <b-input type="password" v-model="medicoSearch" id="text-password" aria-describedby="password-help-block"></b-input>
    
    </b-form>
             
@@ -129,7 +131,7 @@
                       <v-btn
                         color="blue darken-1"
                         text
-                        @click=" getPaciente(pacienteSearch)"
+                        @click=" getMedico(medicoSearch)"
                         >Cerrar</v-btn
                       >
                     </v-card-actions>
@@ -144,16 +146,16 @@
 <script>
  import turnos from "../data/turnos.json";
 // import admin from "../data/admin.json";
-//  import medicos from "../data/medicos.json";
- import pacientes from "../data/pacientes.json";
+ import medicos from "../data/medicos.json";
+// import pacientes from "../data/pacientes.json";
 
 export default {
   data: function() {
     return {
       modalShow: true,
-      paciente : "vacio",
-      pacientes : pacientes,
-      pacienteSearch : "",
+      medico : "vacio",
+      medicos : medicos,
+      medicoSearch : "",
       turnos: turnos
      
 
@@ -195,15 +197,15 @@ export default {
     },
     turnosFiltradas(){
       return this.turnos.filter(turnos => {
-        return turnos.pacienteId == this.paciente.id;
+        return turnos.medicoId == this.medico.id;
       })
     },
     hideModal() {
       this.$refs["my-modal"].hide();
     },
-    getPaciente(paciente) {
-    this.axios.get('http://localhost:3000/pacientes/' + paciente).then(response => (this.paciente = response.data.data))
-  if (this.pacienteSearch != "" && this.paciente != "vacio" ){
+    getMedico(legajo) {
+    this.axios.get('http://localhost:3000/medicos/' + legajo).then(response => (this.medico = response.data.data))
+  if (this.medicoSearch != "" && this.medico != "vacio" ){
     this.modalShow = false
   }
     },
