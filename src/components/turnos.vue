@@ -531,7 +531,7 @@ export default {
       if (this.registro){
         this.registrarUsuario()
       }
-      this.axios.post('http://localhost:3000/turno',{
+      this.axios.post('http://localhost:3000/turnos',{
         codigo: this.turno.codigo,
         id : this.turno.id,
         fecha: this.turno.fecha,
@@ -546,7 +546,7 @@ export default {
 
     },
     registrarUsuario(){
-      this.axios.post('http://localhost:3000/paciente',{
+      this.axios.post('http://localhost:3000/pacientes',{
         dni : this.busquedaPacientes,
         id : this.busquedaPacientes,
         nombre : this.form.nombre,
