@@ -2,7 +2,7 @@
   <div>
     <v-app>
       <div id="container">
-        <H3>Seccion Pacientes</H3>
+        <H3 style=" font-family: 'Roboto Slab'">Seccion Pacientes</H3>
         <div class="alert alert-primary" role="alert">
   Bienvenido {{paciente.nombre}}
 </div>
@@ -118,7 +118,7 @@
                     <h5 style="text-align:center">Ingrese DNI para continuar </h5>
                     
             <b-form @submit.stop.prevent>
-    <label for="text-password">dni</label>
+    
     <b-input type="password" v-model="pacienteSearch" id="text-password" aria-describedby="password-help-block"></b-input>
    
    </b-form>

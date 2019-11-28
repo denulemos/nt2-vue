@@ -2,7 +2,7 @@
   <div>
     <v-app>
       <div id="container">
-        <H3>Seccion Administrador</H3>
+        <H3 style="  font-family: 'Roboto Slab'">Seccion Administrador</H3>
         <b-card no-body>
           <b-tabs card>
             <!-- <b-tab title="Agregar Medico" active>
@@ -93,9 +93,29 @@
                 </b-tab>
               </div>
             </div>
+
+                    <b-tab title="Ver Pacientes registrados" active>
+              <b-input-group>
+                <template v-slot:prepend>
+                  <b-input-group-text >Busqueda</b-input-group-text>
+                </template>
+                <b-form-input
+                  v-model="criterioDeBusquedaMedicos"
+                ></b-form-input>
+              </b-input-group>
+              <br />
+              <h3
+              style="  font-family: 'Roboto Slab'"
+                class="tituloMedDisp"
+                v-text="`${pacientesFiltradas.length} Pacientes registrados`"
+              ></h3>
+              <br />
+               
+              <b-table striped hover :items="pacientesFiltradas"> </b-table>
+            </b-tab>
             <!--Pacientes -->
 
-            <b-tab title="Ver pacientes registrados" active>
+            <b-tab title="Ver medicos en Sistema" active>
               <b-input-group>
                 <template v-slot:prepend>
                   <b-input-group-text>Busqueda</b-input-group-text>
@@ -106,12 +126,13 @@
               </b-input-group>
               <br />
               <h3
+              style="  font-family: 'Roboto Slab'"
                 class="tituloMedDisp"
-                v-text="`${pacientesFiltradas.length} Pacientes registrados`"
+                v-text="`${medicosFiltradas.length} medicos registrados`"
               ></h3>
               <br />
                
-              <b-table striped hover :items="pacientesFiltradas"> </b-table>
+              <b-table striped hover :items="medicosFiltradas"> </b-table>
             </b-tab>
           </b-tabs>
         </b-card>
@@ -183,9 +204,7 @@
   </div>
 </template>
 <script>
-// import turnos from "../data/turnos.json";
-import medicos from "../data/medicos.json";
-import pacientes from "../data/pacientes.json";
+
 
 export default {
   data: function() {
@@ -206,8 +225,8 @@ export default {
       mensajeExito: "",
       ubicacionMedico: "",
       turnos: "",
-      pacientes: pacientes,
-      medicos: medicos,
+      pacientes: "",
+      medicos: "",
       password: "",
       validPassword: "test"
     };
@@ -220,17 +239,49 @@ mounted(){
       }).catch(e => {
         alert(e)
       })
+      this.axios.get('http://localhost:3000/pacientes/',{ })
+      .then(response =>{
+        this.pacientes = response.data;
+      }).catch(e => {
+        alert(e)
+      })
+      this.axios.get('http://localhost:3000/medicos/',{ })
+      .then(response =>{
+        this.medicos = response.data;
+      }).catch(e => {
+        alert(e)
+      })
 },
   computed: {
     pacientesFiltradas() {
-      return this.pacientes.filter(pacientes => {
+      if (this.pacientes != ""){
+         return this.pacientes.data.filter(pacientes => {
         let registroConcatenado = `${pacientes.nombre}${pacientes.apellido}${pacientes.dni}`;
         return registroConcatenado
           .toLowerCase()
           .includes(this.criterioDeBusquedaPacientes.toLowerCase());
       });
+      }
+      else{
+        return null
+      }
+     
     },
    
+   medicosFiltradas() {
+      if (this.medicos != ""){
+         return this.medicos.data.filter(medicos => {
+        let registroConcatenado = `${medicos.nombre}${medicos.apellido}${medicos.legajo}`;
+        return registroConcatenado
+          .toLowerCase()
+          .includes(this.criterioDeBusquedaPacientes.toLowerCase());
+      });
+      }
+      else{
+        return null
+      }
+     
+    },
     turnosFiltradas() {
       if (this.turnos != ""){
         return Array.from(new Set(this.turnos.data.filter(turnos => {

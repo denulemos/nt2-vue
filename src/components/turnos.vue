@@ -127,29 +127,10 @@
                 </span>
               </v-card-title>
 
-              <!-- <div>
-                      <b-input-group
-                        class="mb-3"
-                        prepend="¿Registrado? Ingresa tu DNI para autocompletar tus datos"
-                      >
-                     
-                        <b-form-input
-                          v-model="busquedaPacientes"
-                        ></b-form-input>
-                        <b-input-group-append>
-                          <b-button
-                            size="sm"
-                            text="Button"
-                            variant="success"
-                            :click="buscarPaciente(busquedaPacientes)"
-                            >Buscar</b-button>
-                           
-                        </b-input-group-append>
-                      </b-input-group>
-                    </div> -->
+            
               <div>
-                <b-alert v-if="this.pacientes != null" variant="success" show>
-                  {{ this.mensajeSaludo }}!</b-alert
+                <b-alert v-if="this.pacientes != ''" variant="success" show>
+                  {{ this.mensajeSaludo }}</b-alert
                 >
 
                 <b-form
@@ -223,6 +204,7 @@
                   >
                     <b-dropdown-item
                       v-for="(v, i) in turnosFiltradas(medicoSeleccion)"
+                     
                       :key="i"
                       :value="i"
                       @click="
@@ -232,7 +214,9 @@
                       "
                       >{{ v.fecha }} {{ v.horario }}</b-dropdown-item
                     >
+                 
                   </b-dropdown>
+                     
                   <P
                     >Tomando turno para {{ turno.fecha }} {{ turno.horario }}
                   </P>
@@ -306,7 +290,7 @@
       <!--Modal Ubicacion-->
       <template>
         <v-row justify="center">
-          <v-dialog v-model="modalUbicacionShow" persistent max-width="600px">
+          <v-dialog v-model="modalUbicacionShow" persistent max-width="700px">
             <v-card>
               <div style="overflow:hidden;width: 700px;position: relative;">
                 <iframe
@@ -482,6 +466,10 @@ export default {
               this.registro = true; 
           }
         );
+        if (this.registro == true){
+          this.mensajeSaludo =
+              "No encontrado en sistema :( Confirmar si queres ser registrado bajo estos mismos datos "
+        }
       }
     },
 

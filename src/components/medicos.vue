@@ -2,7 +2,7 @@
   <div>
     <v-app>
       <div id="container">
-        <H3>Seccion Profesional</H3>
+        <H3 style=" font-family: 'Roboto Slab'">Seccion Profesional</H3>
         <div class="alert alert-success" role="alert">
  Bienvenido {{medico.nombre}}
 </div>
@@ -74,7 +74,7 @@
             <div class="card-deck">
               <div class="row" style="margin-left:25px; margin-right:18px;">
              
-                <b-tab title="Ver turnos propios" active>
+                <b-tab title="Ver turnos propios ocupados" active>
                  <div class="card-deck">
                     
               <div class="row">
@@ -95,7 +95,13 @@
                     Selected Rows:<br />
                     {{ selected }}
                   </p>
-                  <b-button style="position: center" variant="danger">Eliminar turnos seleccionados</b-button>
+                   <v-btn
+                        color="red"
+                        text
+                        @click="tomarTurno(this.selected)"
+                        >Liberar turno</v-btn
+                      >
+                
                 </b-tab>
               </div>
             </div>
@@ -197,12 +203,31 @@ export default {
     },
     turnosFiltradas(){
       return this.turnos.filter(turnos => {
-        return turnos.medicoId == this.medico.id;
+        return (turnos.medicoId == this.medico.id && turnos.pacienteId != null);
       })
     },
     hideModal() {
       this.$refs["my-modal"].hide();
     },
+
+    tomarTurno(turno) {
+      if (turno != null ){
+          this.axios.post('http://localhost:3000/turnos',{
+        codigo: 'MEDITURNOS',
+        id : turno.id,
+        fecha: turno.fecha,
+        horario : turno.horario,
+        medicoId : this.medico.id,
+        pacienteId : null
+      }).then(response =>{
+        alert(response)
+      }).catch(e => {
+        alert(e)
+      })
+      }
+
+    },
+
     getMedico(legajo) {
     this.axios.get('http://localhost:3000/medicos/' + legajo).then(response => (this.medico = response.data.data))
   if (this.medicoSearch != "" && this.medico != "vacio" ){
