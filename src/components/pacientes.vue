@@ -89,10 +89,7 @@
                   >
                   </b-table>
                   <!-- TESTING -->
-                  <p>
-                    Selected Rows:<br />
-                    {{ selected }}
-                  </p>
+                
                 </b-tab>
               </div>
             </div>
@@ -116,9 +113,9 @@
                   <v-col >
                     <h5 style="text-align:center">Ingrese DNI para continuar </h5>
                     
-            <b-form @submit.stop.prevent>
+            <b-form >
     
-    <b-input type="password" v-model="pacienteSearch" id="text-password" aria-describedby="password-help-block"></b-input>
+    <b-input type="password" v-model="pacienteSearch" id="text-password" ></b-input>
    
    </b-form>
             
@@ -156,7 +153,6 @@ export default {
       turnos: ""
      
 
-     
     };
   },
 
@@ -216,7 +212,7 @@ mounted() {
     },
     getPaciente(paciente) {
     this.axios.get('http://localhost:3000/pacientes/' + paciente).then(response => (this.paciente = response.data.data))
-  if (this.pacienteSearch != "" && this.paciente != "vacio" ){
+    if (this.pacienteSearch != "" && this.paciente != "vacio" ){
     this.modalShow = false
   }
     },

@@ -95,12 +95,12 @@
                     Selected Rows:<br />
                     {{ selected }}
                   </p>
-                   <v-btn
+                   <!-- <v-btn
                         color="red"
                         text
                         @click="tomarTurno(this.selected)"
-                        >Liberar turno</v-btn
-                      >
+                        >Liberar turno</v-btn -->
+                      <!-- > -->
                 
                 </b-tab>
               </div>
