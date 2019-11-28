@@ -93,7 +93,6 @@
                     Selected Rows:<br />
                     {{ selected }}
                   </p>
-                  <b-button style="position: center" variant="danger">Eliminar turnos seleccionados</b-button>
                 </b-tab>
               </div>
             </div>
