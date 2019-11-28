@@ -150,9 +150,9 @@
   </div>
 </template>
 <script>
- import turnos from "../data/turnos.json";
+// import turnos from "../data/turnos.json";
 // import admin from "../data/admin.json";
- import medicos from "../data/medicos.json";
+// import medicos from "../data/medicos.json";
 // import pacientes from "../data/pacientes.json";
 
 export default {
@@ -160,16 +160,29 @@ export default {
     return {
       modalShow: true,
       medico : "vacio",
-      medicos : medicos,
+      medicos : "",
       medicoSearch : "",
-      turnos: turnos
+      turnos: ""
      
 
      
     };
   },
 
- 
+ mounted(){
+    this.axios.get('http://localhost:3000/pacientes/',{
+      }).then(response =>{
+        this.pacientes = response.data;
+      }).catch(e => {
+        alert(e)
+      })
+      this.axios.get('http://localhost:3000/turnos/',{
+      }).then(response =>{
+        this.turnos = response.data;
+      }).catch(e => {
+        alert(e)
+      })
+ },
   computed: {
 
     // turnosFiltradas(){
@@ -178,7 +191,7 @@ export default {
     //   })
     // },
     pacientesFiltradas() {
-      return this.pacientes.filter(pacientes => {
+      return this.pacientes.data.filter(pacientes => {
         let registroConcatenado = `${pacientes.nombre}${pacientes.apellido}${pacientes.dni}`;
         return registroConcatenado
           .toLowerCase()
@@ -202,7 +215,7 @@ export default {
       return `${medico.nombre} ${medico.apellido}`;
     },
     turnosFiltradas(){
-      return this.turnos.filter(turnos => {
+      return this.turnos.data.filter(turnos => {
         return (turnos.medicoId == this.medico.id && turnos.pacienteId != null);
       })
     },

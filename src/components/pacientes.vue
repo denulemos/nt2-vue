@@ -142,25 +142,39 @@
   </div>
 </template>
 <script>
- import turnos from "../data/turnos.json";
+ //import turnos from "../data/turnos.json";
 // import admin from "../data/admin.json";
 //  import medicos from "../data/medicos.json";
- import pacientes from "../data/pacientes.json";
+// import pacientes from "../data/pacientes.json";
 
 export default {
   data: function() {
     return {
       modalShow: true,
       paciente : "vacio",
-      pacientes : pacientes,
+      pacientes : "",
       pacienteSearch : "",
-      turnos: turnos
+      turnos: ""
      
 
      
     };
   },
 
+mounted() {
+ this.axios.get('http://localhost:3000/pacientes/',{
+      }).then(response =>{
+        this.pacientes = response.data;
+      }).catch(e => {
+        alert(e)
+      })
+      this.axios.get('http://localhost:3000/turnos/',{
+      }).then(response =>{
+        this.turnos = response.data;
+      }).catch(e => {
+        alert(e)
+      })
+},
  
   computed: {
 
@@ -170,7 +184,7 @@ export default {
     //   })
     // },
     pacientesFiltradas() {
-      return this.pacientes.filter(pacientes => {
+      return this.pacientes.data.filter(pacientes => {
         let registroConcatenado = `${pacientes.nombre}${pacientes.apellido}${pacientes.dni}`;
         return registroConcatenado
           .toLowerCase()
@@ -194,7 +208,7 @@ export default {
       return `${medico.nombre} ${medico.apellido}`;
     },
     turnosFiltradas(){
-      return this.turnos.filter(turnos => {
+      return this.turnos.data.filter(turnos => {
         return turnos.pacienteId == this.paciente.id;
       })
     },
